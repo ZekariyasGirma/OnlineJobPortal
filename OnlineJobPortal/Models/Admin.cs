@@ -21,7 +21,7 @@ namespace OnlineJobPortal.Models
         [Required]
         [DataType(DataType.Password)]
         [Compare("Password")]
-        [DisplayName(displayName:"Confirm Password")]
+        [Display(Name ="Confirm Password")]
         public string ConfirmPassword { get; set; }
     }
 }
