@@ -46,10 +46,8 @@ namespace OnlineJobPortal.Models
         public string ImageUrl { get; set; }
         
         [Required]
-        public long RegionId { get; set; }
+        public long CityId { get; set; }
         
-        [Required]
-        public long CredentialsId { get; set; }
 
         [Required]
         [StringLength(450)]
@@ -65,7 +63,6 @@ namespace OnlineJobPortal.Models
         [Compare("Password")]
         [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
-        public virtual Region Region { get; set; }
-        public virtual Credentials Credentials { get; set; }
+        public virtual City City { get; set; }
     }
 }

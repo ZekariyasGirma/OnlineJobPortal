@@ -8,12 +8,11 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace OnlineJobPortal.Models
 {
-    public class Region
+    public class City
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        [Display(Name ="Region Name")]
-        public string RegionName { get; set; }
+        public string City { get; set; }
     }
 }

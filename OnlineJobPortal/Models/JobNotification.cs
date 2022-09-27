@@ -1,6 +1,6 @@
 ﻿namespace OnlineJobPortal.Models
 {
-    public class Notification
+    public class JobNotification
     {
     }
 }

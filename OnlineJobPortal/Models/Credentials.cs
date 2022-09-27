@@ -13,23 +13,27 @@ namespace OnlineJobPortal.Models
         public long Id { get; set; }
 
         [Required]
-        [Display(Name ="Education Level")]
-        public string EducationLevel { get; set; }
+        public string EducationLevelID { get; set; }
 
         [Required]
         public string Field { get; set; }
         
         [Required]
+        [Range(0.00,4.00,ErrorMessage ="CGPA RANGE = 0.00 - 4.00")]
         public float CGPA { get; set; }
 
         [Required]
         public int Experience { get; set; }
 
         [Required]
-        public string PdfUrl { get; set; }
+        public string CvUrl { get; set; }
 
         [Display(Name ="Extra Skills")]
-        public string? ExtraSkills { get; set; }
+        public string? Skills { get; set; }
+        
+        [Required]
+        public long JobSeekerId { get; set; }
+        public virtual JobSeeker JobSeeker { get; set; }
 
     }
 }
