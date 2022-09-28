@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OnlineJobPortal.Models;
+using OnlineJobPortal.Models.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace OnlineJobPortal
@@ -25,6 +26,14 @@ namespace OnlineJobPortal
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<ICredentialService, CredentialService>();
+            services.AddScoped<IEductaionLevelService, EducationLevelService>();
+            services.AddScoped<IJobNotificationService, JobNotificationService>();
+            services.AddScoped<IJobSeekerService, JobSeekerService>();
+            services.AddScoped<IJobService, JobService>();
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
