@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace OnlineJobPortal.Models
 {
-    public class Credentials
+    public class Credential
     {
         [Key]
         public long Id { get; set; }
