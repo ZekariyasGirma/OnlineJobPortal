@@ -28,21 +28,23 @@ namespace OnlineJobPortal.Models
         public int Vaccancy { get; set; }
         
         [Required]
-        public string JobNature { get; set; }
+        public string JobType { get; set; }
 
         [Required]
         [Range(1, double.MaxValue, ErrorMessage = "Value should be greater than to 1")]
         public decimal Salary { get; set; }
         
         [Display(Name ="Work Hour Start")]
-        [Range(1, 12, ErrorMessage = "Value should be Between 1 and 12")]
+        [Range(0, 23, ErrorMessage = "Value should be Between 0 and 23")]
         public int? WorkHourStart { get; set; }
         
         [Display(Name = "Work Hour End")]
-        [Range(1, 12, ErrorMessage = "Value should be Between 1 and 12")]
+        [Range(0, 23, ErrorMessage = "Value should be Between 1 and 12")]
         public int? WorkHourEnd { get; set; }
 
         [Required]
+        [Display(Name ="Education Level")]
+        [Range(1,5)]
         public string EducationLevelId { get; set; }
 
         [Required]
@@ -55,7 +57,11 @@ namespace OnlineJobPortal.Models
         [Required]
         [Range(0, Int32.MaxValue, ErrorMessage = "Value should be greater than or equal to 0")]
         public int Experience { get; set; }
+        
+        [Required]
         public long CityId { get; set; }
+
+        [Required]
         public long CompanyId { get; set; }
         public virtual City City { get; set; }
         public virtual Company Company { get; set; }

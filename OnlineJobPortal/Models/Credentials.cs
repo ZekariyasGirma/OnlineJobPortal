@@ -13,6 +13,7 @@ namespace OnlineJobPortal.Models
         public long Id { get; set; }
 
         [Required]
+        [Display(Name ="Education Level")]
         public string EducationLevelID { get; set; }
 
         [Required]
@@ -23,13 +24,14 @@ namespace OnlineJobPortal.Models
         public float CGPA { get; set; }
 
         [Required]
+        [Range(0, Int32.MaxValue, ErrorMessage = "Value should be greater than or equal to 0")]
         public int Experience { get; set; }
 
         [Required]
         public string CvUrl { get; set; }
 
         [Display(Name ="Extra Skills")]
-        public string? Skills { get; set; }
+        public string Skills { get; set; }
         
         [Required]
         public long JobSeekerId { get; set; }

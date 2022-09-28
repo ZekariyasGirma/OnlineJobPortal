@@ -12,7 +12,9 @@ namespace OnlineJobPortal.Models
     {
         [Key]
         public int Id { get; set; }
+        
         [Required]
-        public string City { get; set; }
+        [Display(Name ="City Name")]
+        public string CityName { get; set; }
     }
 }
