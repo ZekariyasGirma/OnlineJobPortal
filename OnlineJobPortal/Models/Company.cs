@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace OnlineJobPortal.Models
 {
+    [Index(nameof(Username), IsUnique = true)]
     public class Company
     {
 

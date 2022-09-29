@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnlineJobPortal.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class UniqueMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -91,7 +91,7 @@ namespace OnlineJobPortal.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "JobNotification",
+                name: "JobSeeker",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -110,9 +110,9 @@ namespace OnlineJobPortal.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_JobNotification", x => x.Id);
+                    table.PrimaryKey("PK_JobSeeker", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_JobNotification_Cities_CityId1",
+                        name: "FK_JobSeeker_Cities_CityId1",
                         column: x => x.CityId1,
                         principalTable: "Cities",
                         principalColumn: "Id",
@@ -183,9 +183,9 @@ namespace OnlineJobPortal.Migrations
                 {
                     table.PrimaryKey("PK_Credentials", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Credentials_JobNotification_JobSeekerId",
+                        name: "FK_Credentials_JobSeeker_JobSeekerId",
                         column: x => x.JobSeekerId,
-                        principalTable: "JobNotification",
+                        principalTable: "JobSeeker",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -196,20 +196,15 @@ namespace OnlineJobPortal.Migrations
                 column: "CityId1");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Companies_Username",
+                table: "Companies",
+                column: "Username",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Credentials_JobSeekerId",
                 table: "Credentials",
                 column: "JobSeekerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_JobNotification_CityId1",
-                table: "JobNotification",
-                column: "CityId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_JobNotification_Username",
-                table: "JobNotification",
-                column: "Username",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Jobs_CityId1",
@@ -225,6 +220,17 @@ namespace OnlineJobPortal.Migrations
                 name: "IX_Jobs_EducationLevelId1",
                 table: "Jobs",
                 column: "EducationLevelId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobSeeker_CityId1",
+                table: "JobSeeker",
+                column: "CityId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobSeeker_Username",
+                table: "JobSeeker",
+                column: "Username",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -242,7 +248,7 @@ namespace OnlineJobPortal.Migrations
                 name: "Jobs");
 
             migrationBuilder.DropTable(
-                name: "JobNotification");
+                name: "JobSeeker");
 
             migrationBuilder.DropTable(
                 name: "Companies");

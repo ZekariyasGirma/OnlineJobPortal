@@ -10,8 +10,8 @@ using OnlineJobPortal.Models;
 namespace OnlineJobPortal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220928105825_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20220929071859_UniqueMigration")]
+    partial class UniqueMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -92,6 +92,9 @@ namespace OnlineJobPortal.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CityId1");
+
+                    b.HasIndex("Username")
+                        .IsUnique();
 
                     b.ToTable("Companies");
                 });
@@ -311,7 +314,7 @@ namespace OnlineJobPortal.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("JobNotification");
+                    b.ToTable("JobSeeker");
                 });
 
             modelBuilder.Entity("OnlineJobPortal.Models.Company", b =>

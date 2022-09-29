@@ -91,6 +91,9 @@ namespace OnlineJobPortal.Migrations
 
                     b.HasIndex("CityId1");
 
+                    b.HasIndex("Username")
+                        .IsUnique();
+
                     b.ToTable("Companies");
                 });
 
@@ -309,7 +312,7 @@ namespace OnlineJobPortal.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("JobNotification");
+                    b.ToTable("JobSeeker");
                 });
 
             modelBuilder.Entity("OnlineJobPortal.Models.Company", b =>

@@ -20,6 +20,6 @@ namespace OnlineJobPortal.Models
         public virtual DbSet<EducationLevel> EducationLevels { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<JobNotification> JobNotifications { get; set; }
-        public virtual DbSet<JobSeeker> JobNotification { get; set; }
+        public virtual DbSet<JobSeeker> JobSeeker { get; set; }
     }
 }
