@@ -10,7 +10,7 @@ namespace OnlineJobPortal.Models.Services
         List<Credential> GetAll();
         void Add(Credential credential);
         Credential GetById(long id);
-        Credential Update(long id, Credential credential);
+        void Update (long id, Credential credential);
         void Delete(long id);
     }
 }

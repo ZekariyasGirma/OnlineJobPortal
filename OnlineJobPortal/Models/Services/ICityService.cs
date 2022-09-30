@@ -10,7 +10,7 @@ namespace OnlineJobPortal.Models.Services
         List<City> GetAll();
         void Add(City city);
         City GetById(long id);
-        City Update(long id, City city);
+        void Update(long id, City city);
         void Delete(long id);
     }
 }

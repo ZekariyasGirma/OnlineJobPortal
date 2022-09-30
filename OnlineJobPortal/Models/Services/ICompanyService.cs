@@ -9,7 +9,7 @@ namespace OnlineJobPortal.Models.Services
         List<Company> GetAll();
         void Add(Company company);
         Company GetById(long id);
-        Company Update(long id, Company company);
+        void Update(long id, Company company);
         void Delete(long id);
     }
 }

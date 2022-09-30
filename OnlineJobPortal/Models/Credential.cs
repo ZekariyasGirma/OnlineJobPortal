@@ -36,6 +36,8 @@ namespace OnlineJobPortal.Models
         [Required]
         public long JobSeekerId { get; set; }
         public virtual JobSeeker JobSeeker { get; set; }
+        public virtual EducationLevel EducationLevel { get; set; }
+
 
     }
 }

@@ -1,32 +1,48 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OnlineJobPortal.Models.Services
 {
     public class CityService : ICityService
     {
+        private readonly ApplicationDbContext _context;
+        public CityService(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public void Add(City city)
         {
-            throw new System.NotImplementedException();
+            _context.Cities.Add(city);
+            _context.SaveChanges();
         }
 
         public void Delete(long id)
         {
-            throw new System.NotImplementedException();
+            var data = _context.Cities.Find(id);
+            _context.Cities.Remove(data);
+            _context.SaveChanges();
         }
 
         public List<City> GetAll()
         {
-            throw new System.NotImplementedException();
+            var result = _context.Cities.ToList();
+            return result;
         }
 
         public City GetById(long id)
         {
-            throw new System.NotImplementedException();
+            var data = _context.Cities.Find(id);
+            return data;
         }
 
-        public City Update(long id, City city)
+        public void Update(long id, City city)
         {
-            throw new System.NotImplementedException();
+            _context.Cities.Update(city);
+            _context.SaveChanges();
         }
     }
 }
