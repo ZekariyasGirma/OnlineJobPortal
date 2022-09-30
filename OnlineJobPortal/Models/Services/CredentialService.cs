@@ -29,7 +29,9 @@ namespace OnlineJobPortal.Models.Services
 
         public List<Credential> GetAll()
         {
-            var result = _context.Credentials.Include(js => js.JobSeeker).
+            var result = _context.Credentials.
+                Include(js => js.JobSeeker).
+                Include(el=>el.EducationLevel).
                 ToList();
             return result;
         }

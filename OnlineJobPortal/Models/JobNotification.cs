@@ -29,6 +29,10 @@ namespace OnlineJobPortal.Models
         public Nullable<bool> JS_Readtatus { get; set; } = null;
         public Nullable<bool> C_ReadStatus { get; set; } = null;
 
+        public virtual Job Job { get; set; }
+        public virtual JobSeeker JobSeeker { get; set; }
+        public virtual Company Company { get; set; }
+
 
     }
 }

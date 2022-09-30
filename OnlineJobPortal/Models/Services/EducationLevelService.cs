@@ -8,29 +8,41 @@ namespace OnlineJobPortal.Models.Services
 {
     public class EducationLevelService : IEductaionLevelService
     {
+        private readonly ApplicationDbContext _context;
+        public EducationLevelService(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public void Add(EducationLevel educationLevel)
         {
-            throw new System.NotImplementedException();
+            _context.EducationLevels.Add(educationLevel);
+            _context.SaveChanges();
         }
 
         public void Delete(long id)
         {
-            throw new System.NotImplementedException();
+            var data = _context.EducationLevels.Find(id);
+            _context.EducationLevels.Remove(data);
+            _context.SaveChanges();
         }
 
         public List<EducationLevel> GetAll()
         {
-            throw new System.NotImplementedException();
+            var result = _context.EducationLevels.ToList();
+            return result;
         }
 
         public EducationLevel GetById(long id)
         {
-            throw new System.NotImplementedException();
+            var data = _context.EducationLevels.Find(id);
+            return data;
         }
 
-        public EducationLevel Update(long id, EducationLevel company)
+        public void Update(long id, EducationLevel company)
         {
-            throw new System.NotImplementedException();
+            _context.EducationLevels.Update(company);
+            _context.SaveChanges();
         }
     }
 }

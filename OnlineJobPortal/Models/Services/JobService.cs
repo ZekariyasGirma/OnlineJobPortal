@@ -8,29 +8,44 @@ namespace OnlineJobPortal.Models.Services
 {
     public class JobService : IJobService
     {
+        private readonly ApplicationDbContext _context;
+        public JobService(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public void Add(Job job)
         {
-            throw new System.NotImplementedException();
+            _context.Jobs.Add(job);
+            _context.SaveChanges();
         }
 
         public void Delete(long id)
         {
-            throw new System.NotImplementedException();
+            var data = _context.Jobs.Find(id);
+            _context.Jobs.Remove(data);
+            _context.SaveChanges();
         }
 
         public List<Job> GetAll()
         {
-            throw new System.NotImplementedException();
+            var result = _context.Jobs.
+                Include(ci => ci.City).
+                Include(co => co.Company).
+                Include(ed => ed.EducationLevel).
+                ToList();
+            return result;
         }
 
         public Job GetById(long id)
         {
-            throw new System.NotImplementedException();
+            var data = _context.Jobs.Find(id);
+            return data;
         }
 
-        public Job Update(long id, Job job)
+        public void Update(long id, Job job)
         {
-            throw new System.NotImplementedException();
+            _context.Jobs.Update(job);
+            _context.SaveChanges();
         }
     }
 }

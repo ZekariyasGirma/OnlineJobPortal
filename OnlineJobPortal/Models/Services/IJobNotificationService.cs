@@ -7,7 +7,7 @@ namespace OnlineJobPortal.Models.Services
         List<JobNotification> GetAll();
         void Add(JobNotification jobNotification);
         JobNotification GetById(long id);
-        JobNotification Update(long id, JobNotification jobNotification);
+        void Update(long id, JobNotification jobNotification);
         void Delete(long id);
     }
 }

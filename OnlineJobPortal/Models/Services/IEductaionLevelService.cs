@@ -7,7 +7,7 @@ namespace OnlineJobPortal.Models.Services
         List<EducationLevel> GetAll();
         void Add(EducationLevel educationLevel);
         EducationLevel GetById(long id);
-        EducationLevel Update(long id, EducationLevel company);
+        void Update(long id, EducationLevel company);
         void Delete(long id);
     }
 }

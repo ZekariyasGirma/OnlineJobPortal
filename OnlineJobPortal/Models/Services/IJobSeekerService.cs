@@ -7,7 +7,7 @@ namespace OnlineJobPortal.Models.Services
         List<JobSeeker> GetAll();
         void Add(JobSeeker jobSeeker);
         JobSeeker GetById(long id);
-        JobSeeker Update(long id, JobSeeker jobSeeker);
+        void Update(long id, JobSeeker jobSeeker);
         void Delete(long id);
     }
 }

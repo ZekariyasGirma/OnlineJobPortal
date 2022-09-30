@@ -8,29 +8,42 @@ namespace OnlineJobPortal.Models.Services
 {
     public class JobSeekerService : IJobSeekerService
     {
+        private readonly ApplicationDbContext _context;
+        public JobSeekerService(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public void Add(JobSeeker jobSeeker)
         {
-            throw new System.NotImplementedException();
+            _context.JobSeekers.Add(jobSeeker);
+            _context.SaveChanges();
         }
 
         public void Delete(long id)
         {
-            throw new System.NotImplementedException();
+            var data = _context.JobSeekers.Find(id);
+            _context.JobSeekers.Remove(data);
+            _context.SaveChanges();
         }
 
         public List<JobSeeker> GetAll()
         {
-            throw new System.NotImplementedException();
+            var result = _context.JobSeekers.
+                Include(c=>c.City).
+                ToList();
+            return result;
         }
 
         public JobSeeker GetById(long id)
         {
-            throw new System.NotImplementedException();
+            var data = _context.JobSeekers.Find(id);
+            return data;
         }
 
-        public JobSeeker Update(long id, JobSeeker jobSeeker)
+        public void Update(long id, JobSeeker jobSeeker)
         {
-            throw new System.NotImplementedException();
+            _context.JobSeekers.Update(jobSeeker);
+            _context.SaveChanges();
         }
     }
 }
