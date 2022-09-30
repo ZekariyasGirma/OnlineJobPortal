@@ -14,7 +14,7 @@ namespace OnlineJobPortal.Models
 
         [Required]
         [Display(Name ="Education Level")]
-        public string EducationLevelID { get; set; }
+        public string EducationLevelId { get; set; }
 
         [Required]
         public string Field { get; set; }
