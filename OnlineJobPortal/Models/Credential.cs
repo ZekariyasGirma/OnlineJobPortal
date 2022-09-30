@@ -12,9 +12,6 @@ namespace OnlineJobPortal.Models
         [Key]
         public long Id { get; set; }
 
-        [Required]
-        [Display(Name ="Education Level")]
-        public string EducationLevelId { get; set; }
 
         [Required]
         public string Field { get; set; }
@@ -28,13 +25,16 @@ namespace OnlineJobPortal.Models
         public int Experience { get; set; }
 
         [Required]
-        public string CvUrl { get; set; }
+        public byte[] CvPdf { get; set; }
 
         [Display(Name ="Extra Skills")]
         public string Skills { get; set; }
         
         [Required]
         public long JobSeekerId { get; set; }
+        [Required]
+        [Display(Name = "Education Level")]
+        public long EducationLevelId { get; set; }
         public virtual JobSeeker JobSeeker { get; set; }
         public virtual EducationLevel EducationLevel { get; set; }
 
