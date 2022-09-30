@@ -10,8 +10,8 @@ using OnlineJobPortal.Models;
 namespace OnlineJobPortal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220930093338_photourlToByte")]
-    partial class photourlToByte
+    [Migration("20220930094125_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

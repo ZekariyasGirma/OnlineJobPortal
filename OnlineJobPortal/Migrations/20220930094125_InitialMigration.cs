@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnlineJobPortal.Migrations
 {
-    public partial class UniqueMigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -73,7 +73,7 @@ namespace OnlineJobPortal.Migrations
                     CompanyName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Photo = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     CityId = table.Column<long>(type: "bigint", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -102,7 +102,7 @@ namespace OnlineJobPortal.Migrations
                     Sex = table.Column<string>(type: "nvarchar(1)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Photo = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     CityId = table.Column<long>(type: "bigint", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
