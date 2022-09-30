@@ -29,9 +29,7 @@ namespace OnlineJobPortal.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
-        [DataType(DataType.ImageUrl)]
-        public string ImageUrl { get; set; }
+        public byte[] Photo { get; set; }
 
         [Required]
         public long CityId { get; set; }
