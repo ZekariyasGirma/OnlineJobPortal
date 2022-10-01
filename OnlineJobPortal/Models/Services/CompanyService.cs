@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,23 @@ namespace OnlineJobPortal.Models.Services
         {
             var data = _context.Companies.Find(id);
             return data;
+        }
+
+        public List<SelectListItem> ListOfCities()
+        {
+
+            var clist = _context.Cities.Select(c => new SelectListItem()
+            {
+                Value = c.Id.ToString(),
+                Text = c.CityName
+            }).ToList();
+            clist.Insert(0, new SelectListItem()
+            {
+                Text = "----Select City----",
+                Value = string.Empty
+            });
+            return clist;
+
         }
 
         public void Update(long id, Company company)

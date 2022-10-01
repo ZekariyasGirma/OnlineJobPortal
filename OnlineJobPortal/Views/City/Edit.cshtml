@@ -1,0 +1,19 @@
+﻿@model City
+@{
+    ViewData["Title"] = "index";
+}
+<h2>Edit City</h2>
+<form action="/City/edit/@Model.Id" method="post">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
+            <label asp-for="CityName"></label>
+            <input asp-for="CityName" class="form-control"  placeholder="City Name" value="@Model.CityName">
+            <span asp-validation-for="CityName" class="text-danger"></span>
+        
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-dark btn-outline-success">Save</button>
+    <a class="btn btn-dark btn-outline-danger" href="/City/index">Cancel</a>
+</form>

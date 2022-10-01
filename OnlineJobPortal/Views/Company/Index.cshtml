@@ -1,0 +1,25 @@
+﻿@model List<Company>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container-fluid">
+@foreach(var item in Model)
+{
+    <div class="row">
+        <div class="col-md-5 mb-5">
+             <div class="card p-3" style="Width: 18rem;">
+                    @if (item.Photo != null)
+                    {
+                        var base64 = Convert.ToBase64String(item.Photo);
+                        var img = string.Format("data:image/jpg;base64,{0}", base64);
+                        <img src="@img" class="card-img-top shadow bg-white rounded">
+                    }else{<img src="~/No-image-found.jpg" class="card-img-top shadow bg-white rounded">}
+                    <div class="card-body">
+                        <h4>@item.CompanyName</h4>
+                        <h1>@item.PhoneNumber</h1>
+                    </div>
+             </div>
+        </div>
+    </div>
+}
+</div>

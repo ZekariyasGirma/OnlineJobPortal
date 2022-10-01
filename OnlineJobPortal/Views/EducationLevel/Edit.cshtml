@@ -1,0 +1,19 @@
+﻿@model EducationLevel
+@{
+    ViewData["Title"] = "Edit";
+}
+<h2>Edit Education Level</h2>
+<form action="/EducationLevel/edit/@Model.Id" method="post">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
+            <label asp-for="EducationLevelName"></label>
+            <input asp-for="EducationLevelName" class="form-control"  placeholder="Education Name" value="@Model.EducationLevelName">
+            <span asp-validation-for="EducationLevelName" class="text-danger"></span>
+        
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-dark btn-outline-success">Save</button>
+    <a class="btn btn-dark btn-outline-danger" href="/EducationLevel/index">Cancel</a>
+</form>

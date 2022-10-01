@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 namespace OnlineJobPortal.Models.Services
 {
     public interface ICompanyService
@@ -11,5 +12,7 @@ namespace OnlineJobPortal.Models.Services
         Company GetById(long id);
         void Update(long id, Company company);
         void Delete(long id);
+        List<SelectListItem> ListOfCities();
+        
     }
 }

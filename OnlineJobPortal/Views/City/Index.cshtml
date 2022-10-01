@@ -1,0 +1,35 @@
+﻿@model List<City>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container-fluid">
+<h1 class="text-center">List of Cities</h1>
+<table class="table">
+     <thead class="thead-dark">
+    <tr>
+        <th>City ID</th>
+        <th>City Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+
+    @foreach(var item in Model)
+            {
+            <tr class="bg-light">
+                <td>@item.Id</td>
+                <td>@item.CityName</td>
+                 <td>
+                <a href="/City/edit/@item.Id" class="btn btn-dark btn-outline-info">Edit</a>
+                </td>
+                <td>
+                <a href="/City/delete/@item.Id" class=" btn btn-dark btn-outline-danger">Delete</a>
+            </td>
+            </tr>
+               
+            }
+</table>
+<div class="text-white">
+    <a href="/city/create" class="btn btn-dark btn-outline-success">Add New city</a>
+</div>
+</div>

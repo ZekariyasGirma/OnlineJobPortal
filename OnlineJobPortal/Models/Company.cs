@@ -20,8 +20,8 @@ namespace OnlineJobPortal.Models
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
 
-        [DataType(DataType.PhoneNumber, ErrorMessage = "Invalid Phone Number")]
-        [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Phone Number.")]
+
+        [RegularExpression(@"^([0-9]{12})$", ErrorMessage = "Invalid Phone Number.")]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 

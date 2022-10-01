@@ -1,0 +1,16 @@
+﻿@model EducationLevel
+@{
+    ViewData["Title"] = "Create";
+}
+<H1>Add Education Level</H1>
+<form action="/EducationLevel/create" method="post">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="EducationLevelName"></label>
+            <input asp-for="EducationLevelName" class="form-control"  placeholder="Education Level Name">
+            <span asp-validation-for="EducationLevelName" class="text-danger"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-dark btn-success">Create</button>
+    <a class="btn btn-dark btn-danger" href="/EducationLevel/index">Cancel</a>
+</form>

@@ -1,0 +1,17 @@
+﻿@model City
+@{
+    ViewData["Title"] = "Create";
+}
+
+<H1>Add City</H1>
+<form action="/City/create" method="post">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="CityName"></label>
+            <input asp-for="CityName" class="form-control"  placeholder="City Name">
+            <span asp-validation-for="CityName" class="text-danger"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-dark btn-success">Create</button>
+    <a class="btn btn-dark btn-danger" href="/City/index">Cancel</a>
+</form>

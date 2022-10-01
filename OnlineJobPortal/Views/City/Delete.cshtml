@@ -1,0 +1,24 @@
+﻿@model City
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete City</h2>
+<form action="/City/delete/@Model.Id" method="post">
+    <table class="table">
+        <tr class="bg-light">
+            <td class="">
+                <label for="CityName">City Name</label>
+            </td>
+            <td>
+                <input type="hidden" name="Id" value="@Model.Id" />
+                @Model.CityName
+            </td>
+        </tr>
+    </table>
+
+    <div>Are you sure to delete this City?</div>
+    <button type="submit" class="btn btn-dark btn-outline-danger">Delete</button>
+    <a class="btn btn-dark btn-outline-warning" href="/City/index">Cancel</a>
+</form>
+

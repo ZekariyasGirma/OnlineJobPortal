@@ -1,0 +1,35 @@
+﻿@model List<EducationLevel>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container-fluid">
+<h1 class="text-center">List of Education Levels</h1>
+<table class="table">
+     <thead class="thead-dark">
+    <tr>
+        <th>Education Level ID</th>
+        <th>Education Level Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+
+    @foreach(var item in Model)
+            {
+            <tr class="bg-light">
+                <td>@item.Id</td>
+                <td>@item.EducationLevelName</td>
+                 <td>
+                <a href="/EducationLevel/edit/@item.Id" class="btn btn-dark btn-outline-info">Edit</a>
+                </td>
+                <td>
+                <a href="/EducationLevel/delete/@item.Id" class=" btn btn-dark btn-outline-danger">Delete</a>
+            </td>
+            </tr>
+               
+            }
+</table>
+<div class="text-white">
+    <a href="/EducationLevel/create" class="btn btn-dark btn-outline-success">Add New Level of Education</a>
+</div>
+</div>
