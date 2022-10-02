@@ -2,29 +2,31 @@
 @{
     ViewData["Title"] = "Create";
 }
-<h2>Create Product</h2>
+<h1 class="text-lg-center">Register New Company</h1>
+<p>""</p>
+<div class="container bg-light "></div>
 <form action="/Company/create" enctype="multipart/form-data" method="post">
     <div class="form-row">
         <div class="form-group col-md-6">
             <label asp-for="CompanyName"></label>
-            <input asp-for="CompanyName" class="form-control"  placeholder="Company Name">
+            <input asp-for="CompanyName" class="form-control shadow-lg"  placeholder="Company Name">
             <span asp-validation-for="CompanyName" class="text-danger"></span>
         </div>
         <div class="form-group col-md-6">
             <label asp-for="PhoneNumber"></label>
-            <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number">
+            <input asp-for="PhoneNumber" class="form-control shadow-lg" placeholder="Phone Number">
             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control"  placeholder="Email">
+            <input asp-for="Email" class="form-control shadow-lg"  placeholder="Email">
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="form-group col-md-6">
             <label asp-for="CityId"></label>
-            <select asp-for="CityId" class="form-control" 
+            <select asp-for="CityId" class="form-control shadow-lg" 
             asp-items="@ViewBag.CityList">
             </select>
         </div>
@@ -32,17 +34,17 @@
     <div class="form-row">
         <div class="form-group col-md-4">
             <label asp-for="Username"></label>
-            <input asp-for="Username" class="form-control"  placeholder="UserName">
+            <input asp-for="Username" class="form-control shadow-lg"  placeholder="UserName">
             <span asp-validation-for="Username" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
             <label asp-for="Password"></label>
-            <input asp-for="Password" class="form-control" placeholder="password">
+            <input asp-for="Password" class="form-control shadow-lg" placeholder="password">
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
             <label asp-for="ConfirmPassword"></label>
-            <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password">
+            <input asp-for="ConfirmPassword" class="form-control shadow-lg" placeholder="Confirm Password">
             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
         </div>
     </div>
@@ -52,7 +54,10 @@
             <input type="file" name="Image" accept="image/*" id="Imageinput" class="form-control-file">
         </div>
     </div>
-    <button type="submit" class="btn btn-dark btn-outline-success">Create</button>
-    <a class="btn btn-dark btn-outline-danger" href="/product/index">Cancel</a>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn-lg shadow-lg btn-dark btn-outline-light col-md-3">Register</button>
+    @*<a class="btn btn-dark btn-outline-danger col-md-3" href="/Job/index">Cancel</a>*@
+    </div>
+    
 </form>
 

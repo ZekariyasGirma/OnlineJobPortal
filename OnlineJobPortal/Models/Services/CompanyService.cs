@@ -15,6 +15,12 @@ namespace OnlineJobPortal.Models.Services
             _context = context;
         }
 
+        public bool AccountExists(string username, string password)
+        {
+            var res = _context.Companies.Any(x=>x.Username == username && x.Password == password);
+            return res;
+        }
+
         public void Add(Company company)
         {
             _context.Companies.Add(company);
@@ -39,6 +45,12 @@ namespace OnlineJobPortal.Models.Services
         {
             var data = _context.Companies.Find(id);
             return data;
+        }
+
+        public Company GetByUserAndPass(string username, string password)
+        {
+            Company res = _context.Companies.FirstOrDefault(x => x.Username == username && x.Password == password);
+            return res;
         }
 
         public List<SelectListItem> ListOfCities()

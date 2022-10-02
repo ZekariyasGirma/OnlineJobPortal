@@ -13,6 +13,7 @@ namespace OnlineJobPortal.Models.Services
         void Update(long id, Company company);
         void Delete(long id);
         List<SelectListItem> ListOfCities();
-        
+        bool AccountExists(string username, string password);
+        Company GetByUserAndPass(string username, string password);
     }
 }
