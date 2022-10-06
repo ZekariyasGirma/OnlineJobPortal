@@ -13,5 +13,6 @@ namespace OnlineJobPortal.Models.Services
         bool AccountExists(string username, string password);
         List<SelectListItem> ListOfCities();
         JobSeeker GetByUserAndPass(string username, string password);
+        List<Job> GetAllJobs(long id);
     }
 }

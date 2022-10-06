@@ -10,8 +10,8 @@ using OnlineJobPortal.Models;
 namespace OnlineJobPortal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221006053351_finismigration")]
-    partial class finismigration
+    [Migration("20221006165303_unimigration")]
+    partial class unimigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -218,20 +218,20 @@ namespace OnlineJobPortal.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("AppliedDate")
+                    b.Property<DateTime?>("AppliedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("ApprovalStatus")
-                        .HasColumnType("bit");
+                    b.Property<string>("ApprovalStatus")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("C_ReadStatus")
-                        .HasColumnType("bit");
+                    b.Property<string>("C_ReadStatus")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("CompanyId")
                         .HasColumnType("bigint");
 
-                    b.Property<bool?>("JS_Readtatus")
-                        .HasColumnType("bit");
+                    b.Property<string>("JS_Readtatus")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("JobId")
                         .HasColumnType("bigint");

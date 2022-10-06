@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnlineJobPortal.Migrations
 {
-    public partial class finismigration : Migration
+    public partial class unimigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -182,10 +182,10 @@ namespace OnlineJobPortal.Migrations
                     JobId = table.Column<long>(type: "bigint", nullable: false),
                     JobSeekerId = table.Column<long>(type: "bigint", nullable: false),
                     CompanyId = table.Column<long>(type: "bigint", nullable: false),
-                    AppliedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ApprovalStatus = table.Column<bool>(type: "bit", nullable: true),
-                    JS_Readtatus = table.Column<bool>(type: "bit", nullable: true),
-                    C_ReadStatus = table.Column<bool>(type: "bit", nullable: true)
+                    AppliedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ApprovalStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JS_Readtatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    C_ReadStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

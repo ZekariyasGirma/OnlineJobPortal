@@ -20,13 +20,14 @@ namespace OnlineJobPortal.Controllers
 
         public IActionResult Index()
         {
-            if (String.IsNullOrEmpty(HttpContext.Request.Cookies["Type"]) ||
-                HttpContext.Request.Cookies["Type"] == "JobSeeker")
+            if (!String.IsNullOrWhiteSpace(HttpContext.Request.Cookies["Type"])
+                && HttpContext.Request.Cookies["Type"] == "JobSeeker")
             {
-                return View("AccessDenied");
+                var cid = Convert.ToInt64(HttpContext.Request.Cookies["Id"]);
+                var data = _service.GetAllJobs(cid);
+                return View(data);
             }
-            var data = _service.GetAll();
-            return View(data);
+            else { return View("NotFound"); }
         }
         public IActionResult Details(long id)
         {

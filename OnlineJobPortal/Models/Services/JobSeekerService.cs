@@ -21,6 +21,15 @@ namespace OnlineJobPortal.Models.Services
             _context.JobSeekers.Add(jobSeeker);
             _context.SaveChanges();
         }
+        public List<Job> GetAllJobs(long id)
+        {
+            var result = _context.Jobs.
+                Include(ci => ci.City).
+                Include(co => co.Company).
+                Include(ed => ed.EducationLevel).Where(x=> x.Vaccancy>0).
+                ToList();
+            return result;
+        }
         public bool AccountExists(string username, string password)
         {
             var res = _context.JobSeekers.Any(x => x.Username == username && x.Password == password);

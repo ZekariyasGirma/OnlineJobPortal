@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace OnlineJobPortal.Models
 {
+
     public class JobNotification
     {
         [Key]
@@ -26,11 +27,11 @@ namespace OnlineJobPortal.Models
         [ForeignKey("Company")]
         public long CompanyId { get; set; }
 
-        public DateTime AppliedDate { get; set; } = DateTime.Now;
+        public Nullable<DateTime> AppliedDate { get; set; } = DateTime.Now;
 
-        public Nullable<bool> ApprovalStatus { get; set; } = null;
-        public Nullable<bool> JS_Readtatus { get; set; } = null;
-        public Nullable<bool> C_ReadStatus { get; set; } = null;
+        public string ApprovalStatus { get; set; }
+        public string JS_Readtatus { get; set; } 
+        public string C_ReadStatus { get; set; } 
 
         public virtual Job Job { get; set; }
         public virtual JobSeeker JobSeeker { get; set; }

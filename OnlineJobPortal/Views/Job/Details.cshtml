@@ -72,4 +72,20 @@
     
 </table>
 
-<a href="/Company/index" class="btn btn-info">Back to home Page</a>
+
+    @if (@HttpContextAccessor.HttpContext.Request.Cookies["Type"] == "Company")
+    {
+        <a href="/Company/index" class="btn btn-info">Back to home Page</a>
+
+    }else if(@HttpContextAccessor.HttpContext.Request.Cookies["Type"] == "JobSeeker"){
+        <a href="/JobSeeker/index" class="btn btn-info">Back to home Page</a>
+
+        <form action="/JobNotification/create" method="post">
+            <input name="jobId" type="hidden" value="@Model.Id" >
+            <input name="jobSeekerId" type="hidden" value="@HttpContextAccessor.HttpContext.Request.Cookies["Id"]">
+            <input name="companyId" type="hidden" value="@Model.CompanyId">
+        <button type="submit" class="btn btn-dark btn-outline-success">Create</button>
+        </form>
+
+        <a href="/Job/Create" class="btn btn-info">Apply/Submut CV</a>
+    }

@@ -31,12 +31,22 @@ namespace OnlineJobPortal.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(JobNotification jobNotification)
+        public IActionResult Create(string jobId, string jobSeekerId, 
+                                    string companyId)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(jobNotification);
-            }
+            JobNotification jobNotification = new JobNotification();
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(jobNotification);
+            //}
+            jobNotification.JobId = Convert.ToInt64(jobId);
+            jobNotification.JobSeekerId = Convert.ToInt64(jobSeekerId);
+            jobNotification.CompanyId = Convert.ToInt64(companyId);
+            jobNotification.AppliedDate = DateTime.Now;
+            jobNotification.ApprovalStatus = "NotSet";
+            jobNotification.JS_Readtatus = "NotSet";
+            jobNotification.C_ReadStatus = "NotSet";
+
             _service.Add(jobNotification);
             return RedirectToAction(nameof(Index));
         }
