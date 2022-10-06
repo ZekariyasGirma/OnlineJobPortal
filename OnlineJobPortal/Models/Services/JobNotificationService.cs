@@ -14,6 +14,14 @@ namespace OnlineJobPortal.Models.Services
             _context = context;
         }
 
+        public void AcceptCV(long id)
+        {
+            var data = GetById(id);
+            data.ApprovalStatus = "Accepted";
+            _context.JobNotifications.Update(data);
+            _context.SaveChanges();
+        }
+
         public void Add(JobNotification jobNotification)
         {
             _context.JobNotifications.Add(jobNotification);
@@ -44,6 +52,14 @@ namespace OnlineJobPortal.Models.Services
                 Include(js => js.JobSeeker).
                 Include(c => c.Company).FirstOrDefault(x=>x.Id==id);
             return data;
+        }
+
+        public void RejectCV(long id)
+        {
+            var data = GetById(id);
+            data.ApprovalStatus = "Rejected";
+            _context.JobNotifications.Update(data);
+            _context.SaveChanges();
         }
 
         public void Update(long id, JobNotification jobNotification)

@@ -16,5 +16,7 @@ namespace OnlineJobPortal.Models.Services
         List<SelectListItem> ListOfCities();
         bool AccountExists(string username, string password);
         Company GetByUserAndPass(string username, string password);
+        bool CheckForNoti(long id);
+        List<JobNotification> JobNotis(long id);
     }
 }

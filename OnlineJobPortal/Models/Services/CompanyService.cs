@@ -17,7 +17,7 @@ namespace OnlineJobPortal.Models.Services
 
         public bool AccountExists(string username, string password)
         {
-            var res = _context.Companies.Any(x=>x.Username == username && x.Password == password);
+            var res = _context.Companies.Any(x => x.Username == username && x.Password == password);
             return res;
         }
 
@@ -36,13 +36,13 @@ namespace OnlineJobPortal.Models.Services
 
         public List<Company> GetAll()
         {
-            var result =_context.Companies.Include(c=> c.City).ToList();
+            var result = _context.Companies.Include(c => c.City).ToList();
             return result;
         }
 
         public Company GetById(long id)
         {
-            var data = _context.Companies.Include(c=>c.City).FirstOrDefault(x=>x.Id == id);
+            var data = _context.Companies.Include(c => c.City).FirstOrDefault(x => x.Id == id);
             return data;
         }
 
@@ -57,11 +57,39 @@ namespace OnlineJobPortal.Models.Services
             var result = _context.Jobs.
                 Include(ci => ci.City).
                 Include(co => co.Company).
-                Include(ed => ed.EducationLevel).Where(x => x.CompanyId == id).
+                Include(ed => ed.EducationLevel).Where(x => x.CompanyId == id ).
                 ToList();
             return result;
         }
-
+        public bool CheckForNoti(long id)
+        {
+            if (_context.JobNotifications.Any(x => x.CompanyId == id && x.C_ReadStatus == "NotSet"))
+            {
+                var result = _context.JobNotifications.
+                 Include(j => j.Job).
+                 Include(js => js.JobSeeker).
+                 Include(c => c.Company).Where(c => c.CompanyId == id&& c.C_ReadStatus=="NotSet").
+                 ToList();
+                foreach (JobNotification itm in result)
+                {
+                    itm.C_ReadStatus = "Read";
+                    _context.JobNotifications.Update(itm);
+                    _context.SaveChanges();
+                }
+               return true;
+            }
+                
+            else return false;
+        }
+        public List<JobNotification> JobNotis(long id)
+        {
+            var result = _context.JobNotifications.
+                Include(j => j.Job).
+                Include(js => js.JobSeeker).
+                Include(c => c.Company).Where(c => c.CompanyId == id).
+                ToList();
+            return result;
+        }
         public List<SelectListItem> ListOfCities()
         {
 

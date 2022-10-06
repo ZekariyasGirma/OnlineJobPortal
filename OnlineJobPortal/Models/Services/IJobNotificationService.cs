@@ -9,5 +9,8 @@ namespace OnlineJobPortal.Models.Services
         JobNotification GetById(long id);
         void Update(long id, JobNotification jobNotification);
         void Delete(long id);
+        void AcceptCV(long id);
+        void RejectCV(long id);
+
     }
 }

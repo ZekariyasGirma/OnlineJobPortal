@@ -29,6 +29,15 @@ namespace OnlineJobPortal.Controllers
             }
             else { return View("NotFound"); }
         }
+        public IActionResult NotificationPage()
+        {
+            if (HttpContext.Request.Cookies["JSNoti"] != null)
+            {
+                HttpContext.Response.Cookies.Delete("JSNoti");
+            }
+            var jnlist = _service.JobNotis(Convert.ToInt64(HttpContext.Request.Cookies["Id"]));
+            return View(jnlist);
+        }
         public IActionResult Details(long id)
         {
             if (String.IsNullOrEmpty(HttpContext.Request.Cookies["Type"])||
@@ -99,6 +108,10 @@ namespace OnlineJobPortal.Controllers
                 HttpContext.Response.Cookies.Append("Type", "JobSeeker", options);
                 HttpContext.Response.Cookies.Append("Name", curUser.FirstName+""+curUser.LastName, options);
                 ViewBag.Error = "";
+                if (_service.CheckForNoti(curUser.Id))
+                {
+                    HttpContext.Response.Cookies.Append("JSNoti", "True", options);
+                }
                 return RedirectToAction("Index");
             }
         }

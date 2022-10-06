@@ -48,13 +48,35 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="Logout"><i class="bi-box-arrow-left"></i> Company Logout</a>
                                 </li>
-                      }else if(HttpContextAccessor.HttpContext.Request.Cookies["Type"]=="JobSeeker"){
+                            if (HttpContextAccessor.HttpContext.Request.Cookies["CNoti"]=="True"){
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="NotificationPage"><i class="bi-bell-fill"></i></a>
+                                </li>
+                            }
+                            else
+                            {
+                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="NotificationPage"><i class="bi-bell"></i></a>
+                                </li>
+                            }
+                        }else if(HttpContextAccessor.HttpContext.Request.Cookies["Type"]=="JobSeeker"){
                                   <li class="nav-item ml-auto">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="JobSeeker" asp-route-id="@HttpContextAccessor.HttpContext.Request.Cookies["id"]" asp-action="Details"><i class="bi-person-circle"></i>@HttpContextAccessor.HttpContext.Request.Cookies["Name"]</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="JobSeeker" asp-action="Logout"><i class="bi-box-arrow-left"></i> JobSeeker Logout</a>
                                 </li>
+                            if (HttpContextAccessor.HttpContext.Request.Cookies["JSNoti"]=="True"){
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="JobSeeker" asp-action="NotificationPage"><i class="bi-bell-fill"></i></a>
+                                </li>
+                            }
+                            else
+                            {
+                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="JobSeeker" asp-action="NotificationPage"><i class="bi-bell"></i></a>
+                                </li>
+                            }
                       }
                     }
                     </ul>

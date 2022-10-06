@@ -1,0 +1,54 @@
+﻿@model List<JobNotification>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Notifications</h1>
+<table class="table shadow-lg">
+     <thead class="table-dark">
+    <tr>
+        <th>JobSeeker Name</th>
+        <th>Company Name</th>
+        <th>Job Title</th>
+        <th>Applied Date</th>
+        <th>Job Seeker Details</th>
+        <th>Accept CV Status</th>
+        <th>Reject CV Status</th>
+    </tr>
+    </thead>
+
+    @foreach(var item in Model)
+            {
+            <tr class="bg-light">
+                <td>@item.JobSeeker.FirstName @item.JobSeeker.LastName</td>
+                <td>@item.Company.CompanyName</td>
+                <td>@item.Job.JobTitle</td>
+                <td>@item.AppliedDate</td>
+                <td>
+                <a href="/JobSeeker/Details/@item.JobSeekerId" class="btn btn-dark btn-outline-info">Detail</a>
+                </td>
+                <td>
+                @if (@item.ApprovalStatus == "Accepted")
+                {
+                    @item.ApprovalStatus
+                }else
+                {
+                    <a href="/JobNotification/Accept/@item.Id" class="btn btn-dark btn-outline-success">Accept</a>
+                }
+                </td>
+                <td>
+                @if (@item.ApprovalStatus == "Rejected")
+                {
+                    @item.ApprovalStatus
+                }else
+                {
+                <a href="/JobNotification/Reject/@item.Id" class="btn btn-dark btn-outline-danger">Reject</a>  
+                }
+                </td>
+            </tr>
+               
+            }
+</table>
+@*<div class="text-white">
+    <a href="/EducationLevel/create" class="btn btn-dark btn-outline-success">Add New Level of Education</a>
+</div>*@

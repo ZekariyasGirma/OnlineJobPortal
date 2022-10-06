@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using OnlineJobPortal.Models;
 using OnlineJobPortal.Models.Services;
+using Microsoft.AspNetCore.Http;
+
 namespace OnlineJobPortal.Controllers
 {
     public class JobNotificationController : Controller
@@ -46,11 +48,40 @@ namespace OnlineJobPortal.Controllers
             jobNotification.ApprovalStatus = "NotSet";
             jobNotification.JS_Readtatus = "NotSet";
             jobNotification.C_ReadStatus = "NotSet";
-
+            
             _service.Add(jobNotification);
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult Accept(long id)
+        {
 
+            if (HttpContext.Request.Cookies["Type"] == "Company")
+            {
+                _service.AcceptCV(id);
+                return RedirectToAction("NotificationPage", "Company");
+            }
+            else if (HttpContext.Request.Cookies["Type"] == "JobSeeker")
+            {
+                return RedirectToAction("NotificationPage", "JobSeeker");
+
+            }
+            else { return View("AccessDenied"); }
+
+        }
+        public IActionResult Reject(long id)
+        {
+            
+            if (HttpContext.Request.Cookies["Type"] == "Company")
+            {
+                _service.RejectCV(id);
+                return RedirectToAction("NotificationPage", "Company");
+            }else if (HttpContext.Request.Cookies["Type"] == "JobSeeker")
+            {
+                return RedirectToAction("NotificationPage", "JobSeeker");
+
+            }
+            else { return View("AccessDenied"); }
+        }
         public IActionResult Edit(long id)
         {
             var data = _service.GetById(id);

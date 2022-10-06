@@ -85,5 +85,36 @@ namespace OnlineJobPortal.Models.Services
             _context.JobSeekers.Update(jobSeeker);
             _context.SaveChanges();
         }
+        public List<JobNotification> JobNotis(long id)
+        {
+            var result = _context.JobNotifications.
+                Include(j => j.Job).
+                Include(js => js.JobSeeker).
+                Include(c => c.Company).Where(c => c.JobSeekerId == id).
+                ToList();
+            return result;
+        }
+        public bool CheckForNoti(long id)
+        {
+            if (_context.JobNotifications.Any(x => x.JobSeekerId == id 
+            && x.JS_Readtatus == "NotSet" && (x.ApprovalStatus=="Accepted"|| x.ApprovalStatus == "Rejected")))
+            {
+                var result = _context.JobNotifications.
+                 Include(j => j.Job).
+                 Include(js => js.JobSeeker).
+                 Include(c => c.Company).Where(x => x.JobSeekerId == id
+            && x.JS_Readtatus == "NotSet" && (x.ApprovalStatus == "Accepted" || x.ApprovalStatus == "Rejected")).
+                 ToList();
+                foreach (JobNotification itm in result)
+                {
+                    itm.JS_Readtatus = "Read";
+                    _context.JobNotifications.Update(itm);
+                    _context.SaveChanges();
+                }
+                return true;
+            }
+
+            else return false;
+        }
     }
 }

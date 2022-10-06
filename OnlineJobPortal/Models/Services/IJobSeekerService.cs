@@ -14,5 +14,7 @@ namespace OnlineJobPortal.Models.Services
         List<SelectListItem> ListOfCities();
         JobSeeker GetByUserAndPass(string username, string password);
         List<Job> GetAllJobs(long id);
+        bool CheckForNoti(long id);
+        List<JobNotification> JobNotis(long id);
     }
 }
