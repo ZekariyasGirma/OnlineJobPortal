@@ -29,6 +29,20 @@ namespace OnlineJobPortal.Controllers
             }
             else { return View("NotFound"); }
         }
+        [HttpPost]
+        public IActionResult Index(string fieldorTitle=null, string salary=null)
+        {
+            if (!String.IsNullOrWhiteSpace(HttpContext.Request.Cookies["Type"])
+                && HttpContext.Request.Cookies["Type"] == "JobSeeker")
+            {
+                ViewBag.FT = fieldorTitle;
+                ViewBag.SL = salary;
+                var cid = Convert.ToInt64(HttpContext.Request.Cookies["Id"]);
+                var data = _service.GetFiltredJobs(fieldorTitle, salary);
+                return View(data);
+            }
+            else { return View("NotFound"); }
+        }
         public IActionResult NotificationPage()
         {
             if (HttpContext.Request.Cookies["JSNoti"] != null)

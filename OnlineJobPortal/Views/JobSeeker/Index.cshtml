@@ -4,6 +4,20 @@
 }
 <div class="container-fluid">
 <h1 class="text-center">List of Jobs</h1>
+<form method="post"  action="/JobSeeker/Index">
+ <div class="form-group row">
+        <div class="form-group col-md-5">
+    <input type="search" class="form-control col" name="fieldorTitle" value="@ViewBag.FT" placeholder="Enter Field or Job Titile" style="width:400px;" >
+    </div>
+    <div class="form-group col-md-5">
+    <input type="search" class="form-control col"  name="salary" value="@ViewBag.SL" placeholder="Enter Minimum Amount of Salary" style="width:400px;">
+    </div>
+    <div class="form-group col-md-2">
+    <input type="submit" value="Search" class="btn btn-light btn-outline-dark">
+</div>   
+</div>
+</form>
+
 <table class="table shadow-lg">
      <thead class="table-dark">
     <tr>

@@ -60,7 +60,7 @@ namespace OnlineJobPortal.Controllers
                 }
             }
             _service.Add(credential, Convert.ToInt64(JSID));
-            return RedirectToAction("Index", "JobSeeker");
+            return RedirectToAction("Login", "JobSeeker");
         }
         public IActionResult Edit(long id)
         {

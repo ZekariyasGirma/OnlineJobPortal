@@ -1,0 +1,45 @@
+﻿@model List<JobSeeker>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container-fluid">
+<h1 class="text-center">List of Cities</h1>
+<table class="table shadow-lg">
+     <thead class="table-dark">
+    <tr>
+        <th>JobSeeker Id</th>
+        <th>First Name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>City Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Details</th>
+    </tr>
+    </thead>
+
+    @foreach(var item in Model)
+            {
+            <tr class="bg-light">
+                <td>@item.Id</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Email</td>
+                <td>@item.City.CityName</td>
+                 <td>
+                <a href="/JobSeeker/edit/@item.Id" class="btn btn-dark btn-outline-info">Edit</a>
+                </td>
+                <td>
+                <a href="/JobSeeker/delete/@item.Id" class=" btn btn-dark btn-outline-danger">Delete</a>
+            </td>
+            <td>
+                <a href="/JobSeeker/details/@item.Id" class=" btn btn-dark btn-outline-warning">Detail</a>
+            </td>
+            </tr>
+               
+            }
+</table>
+<div class="text-white">
+    <a href="/JobSeeker/create" class="btn btn-dark btn-outline-success">Add New JobSeeker</a>
+</div>
+</div>

@@ -30,6 +30,20 @@ namespace OnlineJobPortal.Models.Services
                 ToList();
             return result;
         }
+        public List<Job> GetFiltredJobs(string fldortitle=null, string salary=null)
+        {
+            if(String.IsNullOrEmpty(fldortitle)) { fldortitle = null; }
+            if (String.IsNullOrEmpty(salary)|| salary.Any(x => char.IsLetter(x))) { salary = null; }
+
+            var result = _context.Jobs.
+                Include(ci => ci.City).
+                Include(co => co.Company).
+                Include(ed => ed.EducationLevel).Where(x => x.Vaccancy > 0).
+                Where(s => fldortitle == null || s.Field == fldortitle || s.JobTitle == fldortitle).
+                Where(s => salary==null || s.Salary>Convert.ToDecimal(salary)).
+                ToList();
+            return result;
+        }
         public bool AccountExists(string username, string password)
         {
             var res = _context.JobSeekers.Any(x => x.Username == username && x.Password == password);

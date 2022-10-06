@@ -9,9 +9,24 @@ namespace OnlineJobPortal.Controllers
 {
     public class AdminController : Controller
     {
+        private readonly IAdminService _service;
+        public AdminController(IAdminService service)
+        {
+            _service = service;
+        }
         public IActionResult Index()
         {
             return View();
+        }
+        public IActionResult Companies()
+        {
+            var data = _service.GetAllCompany();
+            return View(data);
+        }
+        public IActionResult JobSeekers()
+        {
+            var data = _service.GetAllJobSeeker();
+            return View(data);
         }
     }
 }

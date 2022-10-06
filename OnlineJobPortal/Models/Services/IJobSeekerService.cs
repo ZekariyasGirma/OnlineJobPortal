@@ -16,5 +16,6 @@ namespace OnlineJobPortal.Models.Services
         List<Job> GetAllJobs(long id);
         bool CheckForNoti(long id);
         List<JobNotification> JobNotis(long id);
+        List<Job> GetFiltredJobs(string fldortitle, string salary);
     }
 }

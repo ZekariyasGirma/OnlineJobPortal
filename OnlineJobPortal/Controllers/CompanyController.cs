@@ -123,7 +123,7 @@ namespace OnlineJobPortal.Controllers
                 }
             }
             _service.Add(company);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Login));
         }
 
         public IActionResult Edit(long id)
