@@ -8,6 +8,7 @@ namespace OnlineJobPortal.Models.Services
     public interface ICompanyService
     {
         List<Company> GetAll();
+        List<Job> GetPostedJobs(long id);
         void Add(Company company);
         Company GetById(long id);
         void Update(long id, Company company);

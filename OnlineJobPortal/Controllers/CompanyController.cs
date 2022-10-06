@@ -24,7 +24,14 @@ namespace OnlineJobPortal.Controllers
         {
             //var data = _service.GetAll();
             //return View(data);
-            ViewBag.Id = HttpContext.Request.Cookies["Id"];
+            
+            if (!String.IsNullOrWhiteSpace(HttpContext.Request.Cookies["Type"])
+                && HttpContext.Request.Cookies["Type"]=="Company")
+            {
+                var cid = Convert.ToInt64(HttpContext.Request.Cookies["Id"]);
+                var data = _service.GetPostedJobs(cid);
+            }
+
             ViewBag.Name = HttpContext.Request.Cookies["Name"];
             ViewBag.Type = HttpContext.Request.Cookies["Type"];
 

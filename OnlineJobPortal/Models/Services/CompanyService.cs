@@ -52,6 +52,16 @@ namespace OnlineJobPortal.Models.Services
             return res;
         }
 
+        public List<Job> GetPostedJobs(long id)
+        {
+            var result = _context.Jobs.
+                Include(ci => ci.City).
+                Include(co => co.Company).
+                Include(ed => ed.EducationLevel).Where(x => x.CompanyId == id).
+                ToList();
+            return result;
+        }
+
         public List<SelectListItem> ListOfCities()
         {
 
