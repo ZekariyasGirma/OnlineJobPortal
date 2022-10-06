@@ -1,5 +1,22 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Job
 @{
+    ViewData["Title"] = "Delete";
 }
+<h2>Remove Posted Job</h2>
+<form action="/Job/delete/@Model.Id" method="post">
+    <table class="table">
+        <tr class="bg-light">
+            <td class="">
+                <label for="JobTitle">Job Title</label>
+            </td>
+            <td>
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <p>@Model.JobTitle</p> 
+            </td>
+        </tr>
+    </table>
+
+    <div>Are you sure to delete this Job?</div>
+    <button type="submit" class="btn btn-dark btn-outline-danger">Remove</button>
+    <a class="btn btn-dark btn-outline-warning" href="/Admin/index">Cancel</a>
+</form>

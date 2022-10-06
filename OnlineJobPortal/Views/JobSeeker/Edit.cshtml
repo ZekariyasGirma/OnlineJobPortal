@@ -9,6 +9,7 @@
     <div class="form-group row">
         <div class="form-group col-md-4">
             <label asp-for="FirstName"></label>
+            <input type="hidden" asp-for="Id" value="@Model.Id">
             <input asp-for="FirstName" class="form-control "  placeholder="First Name" value="@Model.FirstName">
             <span asp-validation-for="FirstName" class="text-danger"></span>
         </div>
@@ -44,7 +45,7 @@
       
     <div class="form-group row">
         <div class="form-group col-md-4">
-            <input asp-for="CredentialId" class="form-control " type="hidden">
+            <input asp-for="CredentialId" class="form-control " type="hidden" value="@Model.CredentialId">
             <label asp-for="Username"></label>
             <input asp-for="Username" class="form-control "  placeholder="UserName">
             <span asp-validation-for="Username" class="text-danger"></span>

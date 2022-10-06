@@ -30,12 +30,12 @@ namespace OnlineJobPortal.Controllers
             {
                 var cid = Convert.ToInt64(HttpContext.Request.Cookies["Id"]);
                 var data = _service.GetPostedJobs(cid);
+                return View(data);
             }
+            else { return View("NotFound"); }
 
-            ViewBag.Name = HttpContext.Request.Cookies["Name"];
-            ViewBag.Type = HttpContext.Request.Cookies["Type"];
 
-            return View();
+            
         }
         public IActionResult Details(long id)
         {

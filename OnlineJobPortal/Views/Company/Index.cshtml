@@ -1,26 +1,49 @@
-﻿@model List<Company>
+﻿@model List<Job>
 @{
     ViewData["Title"] = "Index";
 }
-<h2>  @ViewBag.Id @ViewBag.Type @ViewBag.Name</h2>
-@*<div class="container-fluid">
-@foreach(var item in Model)
-{
-    <div class="row">
-        <div class="col-md-5 mb-5">
-             <div class="card p-3" style="Width: 18rem;">
-                    @if (item.Photo != null)
-                    {
-                        var base64 = Convert.ToBase64String(item.Photo);
-                        var img = string.Format("data:image/jpg;base64,{0}", base64);
-                        <img src="@img" class="card-img-top shadow bg-white rounded">
-                    }else{<img src="~/No-image-found.jpg" class="card-img-top shadow bg-white rounded">}
-                    <div class="card-body">
-                        <h4>@item.CompanyName</h4>
-                        <h1>@item.PhoneNumber</h1>
-                    </div>
-             </div>
-        </div>
-    </div>
-}
-</div>*@
+<div class="container-fluid">
+<h1 class="text-center">List of Jobs Posted by @HttpContextAccessor.HttpContext.Request.Cookies["Type"] </h1>
+<table class="table shadow-lg">
+     <thead class="table-dark">
+    <tr>
+        <th>Job ID</th>
+        <th>Job Title</th>
+        <th>Job Description</th>
+        <th>Vaccancy</th>
+        <th>Salary</th>
+        <th>Education Level</th>
+        <th>CGPA</th> 
+        <th>Details</th>  
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+
+    @foreach(var item in Model)
+            {
+            <tr class="bg-light">
+                <td>@item.Id</td>
+                <td>@item.JobTitle</td>
+                <td>@item.JobDescription</td>
+                <td>@item.Vaccancy</td>
+                <td>@item.Salary</td> 
+                <td>@item.EducationLevel.EducationLevelName</td>
+                <td>@item.CGPA</td>
+                <td>
+                <a href="/Job/details/@item.Id" class="btn btn-dark btn-outline-secondary">Details</a>
+                </td>
+                <td>
+                <a href="/Job/edit/@item.Id" class="btn btn-dark btn-outline-info">Edit</a>
+                </td>
+                <td>
+                <a href="/Job/delete/@item.Id" class=" btn btn-dark btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+               
+            }
+</table>
+<div class="text-white">
+    <a href="/job/create" class="btn btn-dark btn-outline-success">Add New job</a>
+</div>
+</div>

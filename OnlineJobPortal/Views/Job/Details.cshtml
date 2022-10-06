@@ -1,5 +1,75 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Job
 @{
+    ViewData["Title"] = "Details";
 }
+<h1>Job Details</h1>
+
+<table class="table">
+    <tr>
+        <th>Job ID</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>Job Title</th>
+        <td>@Model.JobTitle</td>
+    </tr>
+    <tr>
+        <th>Job Description</th>
+        <td>@Model.JobDescription</td>
+    </tr>
+    <tr>
+        <th>Posted Date</th>
+        <td>@Model.PostedDate</td>
+    </tr>
+    <tr>
+        <th>Vaccancy</th>
+        <td>@Model.Vaccancy</td>
+    </tr>
+    <tr>
+        <th>Job Type</th>
+        <td>@Model.JobType</td>
+    </tr>
+    <tr>
+        <th>Vaccancy</th>
+        <td>@Model.Vaccancy</td>
+    </tr>
+    <tr>
+        <th>Salary</th>
+        <td>@Model.Salary</td>
+    </tr>
+    <tr>
+        <th>WHS</th>
+        <td>@Model.WorkHourStart</td>
+    </tr>
+    <tr>
+        <th>WHE</th>
+        <td>@Model.WorkHourEnd</td>
+    </tr>
+    <tr>
+        <th>Education Level</th>
+        <td>@Model.EducationLevel.EducationLevelName</td>
+    </tr>
+    <tr>
+        <th>Field</th>
+        <td>@Model.Field</td>
+    </tr>
+    <tr>
+        <th>CGPA</th>
+        <td>@Model.CGPA</td>
+    </tr>
+    <tr>
+        <th>Experience</th>
+        <td>@Model.Experience</td>
+    </tr>
+    <tr>
+        <th>City</th>
+        <td>@Model.City.CityName</td>
+    </tr>
+    <tr>
+        <th>Vaccancy</th>
+        <td>@Model.Company.CompanyName</td>
+    </tr>
+    
+</table>
+
+<a href="/Company/index" class="btn btn-info">Back to home Page</a>
