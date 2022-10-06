@@ -28,6 +28,9 @@ namespace OnlineJobPortal.Controllers
         }
         public IActionResult Create()
         {
+            ViewBag.Cmpny = _service.ListOfCompanies();
+            ViewBag.CityList = _service.ListOfCities();
+            ViewBag.EduLvl = _service.ListOfEduLvl();
             return View();
         }
         [HttpPost]
@@ -35,6 +38,9 @@ namespace OnlineJobPortal.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.Cmpny = _service.ListOfCompanies();
+                ViewBag.CityList = _service.ListOfCities();
+                ViewBag.EduLvl = _service.ListOfEduLvl();
                 return View(job);
             }
             _service.Add(job);
@@ -43,6 +49,9 @@ namespace OnlineJobPortal.Controllers
 
         public IActionResult Edit(long id)
         {
+            ViewBag.Cmpny = _service.ListOfCompanies();
+            ViewBag.CityList = _service.ListOfCities();
+            ViewBag.EduLvl = _service.ListOfEduLvl();
             var data = _service.GetById(id);
             if (data == null) return View("NotFound");
             return View(data);
@@ -52,6 +61,9 @@ namespace OnlineJobPortal.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.Cmpny = _service.ListOfCompanies();
+                ViewBag.CityList = _service.ListOfCities();
+                ViewBag.EduLvl = _service.ListOfEduLvl();
                 return View(job);
             }
             _service.Update(id, job);

@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\bootstrap-select-1.13.14\**" />
+    <Content Remove="wwwroot\lib\bootstrap-select-1.13.14\**" />
+    <EmbeddedResource Remove="wwwroot\lib\bootstrap-select-1.13.14\**" />
+    <None Remove="wwwroot\lib\bootstrap-select-1.13.14\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />

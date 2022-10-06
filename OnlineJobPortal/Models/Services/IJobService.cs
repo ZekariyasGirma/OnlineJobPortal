@@ -11,5 +11,7 @@ namespace OnlineJobPortal.Models.Services
         void Update(long id, Job job);
         void Delete(long id);
         List<SelectListItem> ListOfCompanies();
+        List<SelectListItem> ListOfEduLvl();
+        List<SelectListItem> ListOfCities();
     }
 }

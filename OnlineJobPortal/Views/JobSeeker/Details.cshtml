@@ -73,5 +73,8 @@
         </td>
     </tr>
 </table>
-
+@if (HttpContextAccessor.HttpContext.Request.Cookies["Type"] == "JobSeeker"){
+    <a href="/JobSeeker/edit/@Model.Id" class="btn btn-dark btn-outline-light">Edit Profile</a>
+    <a href="/Credential/edit/@Model.CredentialId" class="btn btn-dark btn-outline-light">Edit Credential information</a>
+}
 @*<a href="/product/index" class="btn btn-info">Back to home Page</a>*@

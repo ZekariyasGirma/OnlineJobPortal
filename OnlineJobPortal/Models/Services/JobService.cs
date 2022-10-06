@@ -61,7 +61,38 @@ namespace OnlineJobPortal.Models.Services
             return clist;
 
         }
+        public List<SelectListItem> ListOfCities()
+        {
 
+            var clist = _context.Cities.Select(c => new SelectListItem()
+            {
+                Value = c.Id.ToString(),
+                Text = c.CityName
+            }).ToList();
+            clist.Insert(0, new SelectListItem()
+            {
+                Text = "----Select City----",
+                Value = string.Empty
+            });
+            return clist;
+
+        }
+        public List<SelectListItem> ListOfEduLvl()
+        {
+
+            var clist = _context.EducationLevels.Select(c => new SelectListItem()
+            {
+                Value = c.Id.ToString(),
+                Text = c.EducationLevelName
+            }).ToList();
+            clist.Insert(0, new SelectListItem()
+            {
+                Text = "----Select Edu Lvl----",
+                Value = string.Empty
+            });
+            return clist;
+
+        }
         public void Update(long id, Job job)
         {
             _context.Jobs.Update(job);

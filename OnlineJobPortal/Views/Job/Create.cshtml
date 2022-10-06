@@ -1,0 +1,108 @@
+﻿@model Job
+@{
+    ViewData["Title"] = "Create";
+}
+<h1 class="text-lg-center">Post New Job</h1>
+<div class="container bg-light w-75 shadow-lg ">
+   <br>
+<form action="/Job/create" method="post">
+    <div class="form-group row">
+        <div class="form-group col-md-4">
+            <label asp-for="JobTitle"></label>
+            <input asp-for="JobTitle" class="form-control"  placeholder="Field">
+            <span asp-validation-for="JobTitle" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="JobDescription"></label>
+            <input asp-for="JobDescription" class="form-control " placeholder="Short Description of the job">
+            <span asp-validation-for="JobDescription" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="PostedDate"></label>
+            <input asp-for="PostedDate" class="form-control ">
+            <span asp-validation-for="PostedDate" class="text-danger"></span>
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        <div class="form-group col-md-4">
+            <label asp-for="Vaccancy"></label>
+            <input asp-for="Vaccancy" class="form-control "  placeholder="Vaccancy">
+            <span asp-validation-for="Vaccancy" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="Salary"></label>
+            <input asp-for="Salary" class="form-control "  placeholder="Salary">
+            <span asp-validation-for="Salary" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="JobType"></label>
+            <input asp-for="JobType" class="form-control "  placeholder="JobType">
+            <span asp-validation-for="JobType" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="form-group col-md-4">
+            <label asp-for="WorkHourStart"></label>
+            <input asp-for="WorkHourStart" class="form-control "  placeholder="Work Hour Start">
+            <span asp-validation-for="WorkHourStart" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="WorkHourEnd"></label>
+            <input asp-for="WorkHourEnd" class="form-control "  placeholder="Work Hour End">
+            <span asp-validation-for="WorkHourEnd" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="Field"></label>
+            <input asp-for="Field" class="form-control "  placeholder="Field">
+            <span asp-validation-for="Field" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="form-group col-md-4">
+            <label asp-for="CGPA"></label>
+            <input asp-for="CGPA" class="form-control "  placeholder="Field">
+            <span asp-validation-for="CGPA" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="CityId"></label>
+            <select data-live-search="true" asp-for="CityId" class="form-control " asp-items="@ViewBag.CityList">
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="EducationLevelId"></label>
+            <select data-live-search="true" asp-for="EducationLevelId" class="form-control selecy " asp-items="@ViewBag.EduLvl">
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="form-group col-md-4">
+            <label asp-for="Experience"></label>
+            <input asp-for="Experience" class="form-control "  placeholder="Experience">
+            <span asp-validation-for="Experience" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+                @if (HttpContextAccessor.HttpContext.Request.Cookies["Type"] == "Company")
+                {
+                    <input asp-for="CompanyId" class="form-control " type="hidden" 
+                    value="@HttpContextAccessor.HttpContext.Request.Cookies["Id"]">
+
+                }
+                @if (HttpContextAccessor.HttpContext.Request.Cookies["Type"] == "Admin")
+                {
+                    <label asp-for="CompanyId"></label>
+                    <select asp-for="CompanyId" class="form-control " asp-items="@ViewBag.Cmpny">
+                    </select>
+                }
+                
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn-lg  btn-dark btn-outline-light col-md-3">Post Job</button>
+    @*<a class="btn btn-dark btn-outline-danger col-md-3" href="/Job/index">Cancel</a>*@
+    </div>
+    
+</form>
+<br/>
+</div>

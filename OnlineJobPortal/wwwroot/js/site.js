@@ -2,3 +2,10 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+<script src="~/js/Jquery.min.js"></script>
+$(document).ready(function () {
+    $(".selectpicker").selectpicker({
+        liveSearch: true,
+        showSubtext: true
+    });
+});
