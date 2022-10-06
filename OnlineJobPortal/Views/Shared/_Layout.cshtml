@@ -77,7 +77,14 @@
                                     <a class="nav-link text-dark" asp-area="" asp-controller="JobSeeker" asp-action="NotificationPage"><i class="bi-bell"></i></a>
                                 </li>
                             }
-                      }
+                      }else if(HttpContextAccessor.HttpContext.Request.Cookies["Type"]=="Admin"){
+                                  <li class="nav-item ml-auto">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index"><i class="bi-person-circle"></i>@HttpContextAccessor.HttpContext.Request.Cookies["Name"]</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Logout"><i class="bi-box-arrow-left"></i> Admin Logout</a>
+                                </li>
+                            }
                     }
                     </ul>
                     @*<form class="form-inline my-2 my-lg-0" asp-controller="Product" asp-action="Filter" style="padding-right: 25px;">

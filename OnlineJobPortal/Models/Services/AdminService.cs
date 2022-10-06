@@ -24,5 +24,15 @@ namespace OnlineJobPortal.Models.Services
                 ToList();
             return result;
         }
+        public bool AccountExists(string username, string password)
+        {
+            var res = _context.Admins.Any(x => x.Username == username && x.Password == password);
+            return res;
+        }
+        public Admin GetByUserAndPass(string username, string password)
+        {
+            Admin res = _context.Admins.FirstOrDefault(x => x.Username == username && x.Password == password);
+            return res;
+        }
     }
 }

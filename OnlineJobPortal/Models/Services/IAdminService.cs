@@ -9,5 +9,7 @@ namespace OnlineJobPortal.Models.Services
     {
         List<Company> GetAllCompany();
         List<JobSeeker> GetAllJobSeeker();
+        bool AccountExists(string username, string password);
+        Admin GetByUserAndPass(string username, string password);
     }
 }

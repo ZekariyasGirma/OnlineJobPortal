@@ -1,0 +1,37 @@
+﻿
+  <div class="container-fluid" >
+    <div class="row d-flex justify-content-center align-items-center" >
+      <div class="col-12  col-md-8 col-lg-5 col-xl-5 d-flex justify-content-center align-content-center">
+        <div class="card bg-light w-75  text-black shadow-lg" style="border-radius: 1rem;">
+          <div class="card-body   text-center">
+
+            <div class="">
+                  <h1 class="display-3"><i class="bi-person-check"></i></h1>
+                  <br/>
+                  <h2 class="fw-bold mb-0 text-uppercase">Admin Login</h2>
+                  <br/>
+                    
+              <form action="/Admin/login" method="post">
+              <div class="form-outline  mb-2">
+                
+                <label class="form-label fw-bold text-start" for="username">Username</label>
+                <input type="text" name="username"class="form-control  shadow-lg"/>
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="password">Password</label>
+                 <input type="password" name="password" class="form-control  shadow-lg" />
+              </div>
+              <p class="text-danger">@ViewBag.Error</p>
+              <button class="btn btn-dark btn-outline-light shadow-lg  px-5" type="submit">Login</button>
+            </form>  
+          </div>
+                  <br/>
+                  <br/>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
