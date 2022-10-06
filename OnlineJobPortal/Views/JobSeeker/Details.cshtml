@@ -1,0 +1,77 @@
+﻿@model JobSeeker
+@{
+    ViewData["Title"] = "Details";
+}
+<h1>@Model.FirstName @Model.LastName Profile</h1>
+
+<table class="table">
+    <tr>
+        <th>Profile Picture</th>
+        <td>
+            @if (@Model.Photo != null)
+            {
+                var bs64 = Convert.ToBase64String(Model.Photo);
+                var img = string.Format("data:image/jpg;base64,{0}",bs64);
+                <img src="@img" height="150"/>
+            }else{<img src="~/No-image-found.jpg" class="border border-dark" height="150px"/>}
+        </td>
+    </tr>
+    <tr>
+        <th>ID</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>JobSeeker Name</th>
+        <td>@Model.FirstName @Model.LastName</td>
+    </tr>
+     <tr>
+        <th>Sex</th>
+        <td>@Model.Sex</td>
+    </tr>
+         <tr>
+        <th>Date of Birth</th>
+        <td>@Model.DOB</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Phone Number</th>
+        <td>@Model.PhoneNumber</td>
+    </tr>
+    <tr>
+        <th>City Name</th>
+        <td>@Model.City.CityName</td>
+    </tr>
+    <tr>
+        <th>Field</th>
+        <td>@Model.Credential.Field</td>
+    </tr>
+    <tr>
+        <th>CGPA</th>
+        <td>@Model.Credential.CGPA</td>
+    </tr>
+    <tr>
+        <th>Experience in years</th>
+        <td>@Model.Credential.Experience</td>
+    </tr>
+    <tr>
+        <th>Extra Skills</th>
+        <td>@Model.Credential.Skills</td>
+    </tr>
+    <tr>
+        <th>Education Level</th>
+        <td>@Model.Credential.EducationLevel.EducationLevelName</td>
+    </tr>
+      <tr>
+        <th>CV</th>
+        <td>
+            <object data="data:application/pdf;base64,@Convert.ToBase64String(Model.Credential.CvPdf)" type="application/pdf" width="700" height="700" >
+            <embed src="data:application/pdf;base64, @Convert.ToBase64String(Model.Credential.CvPdf)" type="application/pdf" />
+            </object>
+        </td>
+    </tr>
+</table>
+
+@*<a href="/product/index" class="btn btn-info">Back to home Page</a>*@

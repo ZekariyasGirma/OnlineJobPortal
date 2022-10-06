@@ -29,21 +29,20 @@ namespace OnlineJobPortal.Models.Services
 
         public void Delete(long id)
         {
-            var data = _context.Companies.Find(id);
+            var data = GetById(id);
             _context.Companies.Remove(data);
             _context.SaveChanges();
         }
 
         public List<Company> GetAll()
         {
-            var result =_context.Companies.Include(c=> c.City)
-                .ToList();
+            var result =_context.Companies.Include(c=> c.City).ToList();
             return result;
         }
 
         public Company GetById(long id)
         {
-            var data = _context.Companies.Find(id);
+            var data = _context.Companies.Include(c=>c.City).FirstOrDefault(x=>x.Id == id);
             return data;
         }
 

@@ -25,15 +25,15 @@ namespace OnlineJobPortal.Models
         public string LastName { get; set; }
         
         [Required]
+        [MinimumAge(18,ErrorMessage ="Age must be Greater than 18")]
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
         public DateTime DOB { get; set; }
         
         [Required]
-        public char Sex { get; set; }
+        public string Sex { get; set; }
 
-        [DataType(DataType.PhoneNumber, ErrorMessage = "Invalid Phone Number")]
-        [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Phone Number.")]
+        [RegularExpression(@"^([0-9]{12})$", ErrorMessage = "Invalid Phone Number.")]
         [Display(Name ="Phone Number")]
         public string PhoneNumber { get; set; }
         
@@ -44,9 +44,13 @@ namespace OnlineJobPortal.Models
 
         public byte[] Photo { get; set; }
         
+        [ForeignKey("City")]
         [Required]
-        public long CityId { get; set; }
-        
+        public long? CityId { get; set; }
+
+        [ForeignKey("Credential")]
+        public Nullable<long> CredentialId { get; set; } = null;
+
 
         [Required]
         [StringLength(450)]
@@ -63,5 +67,6 @@ namespace OnlineJobPortal.Models
         [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
         public virtual City City { get; set; }
+        public virtual Credential Credential { get; set; }
     }
 }

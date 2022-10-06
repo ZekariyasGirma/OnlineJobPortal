@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace OnlineJobPortal.Models.Services
 {
@@ -9,5 +10,8 @@ namespace OnlineJobPortal.Models.Services
         JobSeeker GetById(long id);
         void Update(long id, JobSeeker jobSeeker);
         void Delete(long id);
+        bool AccountExists(string username, string password);
+        List<SelectListItem> ListOfCities();
+        JobSeeker GetByUserAndPass(string username, string password);
     }
 }

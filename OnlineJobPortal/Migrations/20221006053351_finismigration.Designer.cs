@@ -10,8 +10,8 @@ using OnlineJobPortal.Models;
 namespace OnlineJobPortal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220930122051_inimigration")]
-    partial class inimigration
+    [Migration("20221006053351_finismigration")]
+    partial class finismigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,7 +58,8 @@ namespace OnlineJobPortal.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CityId")
+                    b.Property<long?>("CityId")
+                        .IsRequired()
                         .HasColumnType("bigint");
 
                     b.Property<string>("CompanyName")
@@ -106,7 +107,6 @@ namespace OnlineJobPortal.Migrations
                         .HasColumnType("real");
 
                     b.Property<byte[]>("CvPdf")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<long>("EducationLevelId")
@@ -119,17 +119,12 @@ namespace OnlineJobPortal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("JobSeekerId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Skills")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EducationLevelId");
-
-                    b.HasIndex("JobSeekerId");
 
                     b.ToTable("Credentials");
                 });
@@ -152,7 +147,7 @@ namespace OnlineJobPortal.Migrations
 
             modelBuilder.Entity("OnlineJobPortal.Models.Job", b =>
                 {
-                    b.Property<long>("JobId")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -160,13 +155,15 @@ namespace OnlineJobPortal.Migrations
                     b.Property<float>("CGPA")
                         .HasColumnType("real");
 
-                    b.Property<long>("CityId")
+                    b.Property<long?>("CityId")
+                        .IsRequired()
                         .HasColumnType("bigint");
 
                     b.Property<long>("CompanyId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("EducationLevelId")
+                    b.Property<long?>("EducationLevelId")
+                        .IsRequired()
                         .HasColumnType("bigint");
 
                     b.Property<int>("Experience")
@@ -203,7 +200,7 @@ namespace OnlineJobPortal.Migrations
                     b.Property<int?>("WorkHourStart")
                         .HasColumnType("int");
 
-                    b.HasKey("JobId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CityId");
 
@@ -260,7 +257,11 @@ namespace OnlineJobPortal.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CityId")
+                    b.Property<long?>("CityId")
+                        .IsRequired()
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CredentialId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DOB")
@@ -292,7 +293,7 @@ namespace OnlineJobPortal.Migrations
 
                     b.Property<string>("Sex")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -302,6 +303,8 @@ namespace OnlineJobPortal.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
+
+                    b.HasIndex("CredentialId");
 
                     b.HasIndex("Username")
                         .IsUnique();
@@ -328,15 +331,7 @@ namespace OnlineJobPortal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineJobPortal.Models.JobSeeker", "JobSeeker")
-                        .WithMany()
-                        .HasForeignKey("JobSeekerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("EducationLevel");
-
-                    b.Navigation("JobSeeker");
                 });
 
             modelBuilder.Entity("OnlineJobPortal.Models.Job", b =>
@@ -401,7 +396,13 @@ namespace OnlineJobPortal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("OnlineJobPortal.Models.Credential", "Credential")
+                        .WithMany()
+                        .HasForeignKey("CredentialId");
+
                     b.Navigation("City");
+
+                    b.Navigation("Credential");
                 });
 #pragma warning restore 612, 618
         }

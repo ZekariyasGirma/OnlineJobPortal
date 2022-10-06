@@ -12,7 +12,7 @@ namespace OnlineJobPortal.Models
     public class Job
     {
         [Key]
-        public long JobId { get; set; } 
+        public long Id { get; set; } 
         
         [Required]
         [Display(Name ="Job Title")]
@@ -44,8 +44,9 @@ namespace OnlineJobPortal.Models
 
         [Required]
         [Display(Name ="Education Level")]
-        [Range(1,5)]
-        public long EducationLevelId { get; set; }
+        [ForeignKey("EducationLevel")]
+        [Range(1,6)]
+        public long? EducationLevelId { get; set; }
 
         [Required]
         public string Field { get; set; }
@@ -57,11 +58,13 @@ namespace OnlineJobPortal.Models
         [Required]
         [Range(0, Int32.MaxValue, ErrorMessage = "Value should be greater than or equal to 0")]
         public int Experience { get; set; }
-        
-        [Required]
-        public long CityId { get; set; }
 
         [Required]
+        [ForeignKey("City")]
+        public long? CityId { get; set; }
+
+        [Required]
+        [ForeignKey("Company")]
         public long CompanyId { get; set; }
         public virtual City City { get; set; }
         public virtual Company Company { get; set; }

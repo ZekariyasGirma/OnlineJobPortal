@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace OnlineJobPortal.Models.Services
 {
@@ -9,5 +10,6 @@ namespace OnlineJobPortal.Models.Services
         Job GetById(long id);
         void Update(long id, Job job);
         void Delete(long id);
+        List<SelectListItem> ListOfCompanies();
     }
 }

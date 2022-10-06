@@ -22,7 +22,7 @@ namespace OnlineJobPortal.Models.Services
 
         public void Delete(long id)
         {
-            var data = _context.JobNotifications.Find(id);
+            var data = GetById(id);
             _context.JobNotifications.Remove(data);
             _context.SaveChanges();
         }
@@ -39,7 +39,10 @@ namespace OnlineJobPortal.Models.Services
 
         public JobNotification GetById(long id)
         {
-            var data = _context.JobNotifications.Find(id);
+            var data = _context.JobNotifications.
+                Include(j => j.Job).
+                Include(js => js.JobSeeker).
+                Include(c => c.Company).FirstOrDefault(x=>x.Id==id);
             return data;
         }
 

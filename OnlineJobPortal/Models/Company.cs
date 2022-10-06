@@ -31,8 +31,9 @@ namespace OnlineJobPortal.Models
 
         public byte[] Photo { get; set; }
 
+        [ForeignKey("City")]
         [Required]
-        public long CityId { get; set; }
+        public long? CityId { get; set; }
 
 
         [Required]

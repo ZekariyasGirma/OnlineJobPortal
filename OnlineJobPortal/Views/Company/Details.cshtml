@@ -2,3 +2,41 @@
 @{
     ViewData["Title"] = "Details";
 }
+<h1>@Model.CompanyName Profile</h1>
+
+<table class="table">
+    <tr>
+        <th>Company Logo</th>
+        <td>
+            @if (@Model.Photo != null)
+            {
+                var bs64 = Convert.ToBase64String(Model.Photo);
+                var img = string.Format("data:image/jpg;base64,{0}",bs64);
+                <img src="@img" height="150"/>
+            }else{<img src="~/No-image-found.jpg" class="border border-dark" height="150px"/>}
+        </td>
+    </tr>
+    <tr>
+        <th>Company ID</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>Compnay Name</th>
+        <td>@Model.CompanyName</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Phone Number</th>
+        <td>@Model.PhoneNumber</td>
+    </tr>
+    <tr>
+        <th>City Name</th>
+        <td>@Model.City.CityName</td>
+    </tr>
+    
+</table>
+
+<a href="/product/index" class="btn btn-info">Back to home Page</a>

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace OnlineJobPortal.Models.Services
 
         public void Delete(long id)
         {
-            var data = _context.Jobs.Find(id);
+            var data = GetById(id);
             _context.Jobs.Remove(data);
             _context.SaveChanges();
         }
@@ -38,8 +39,27 @@ namespace OnlineJobPortal.Models.Services
 
         public Job GetById(long id)
         {
-            var data = _context.Jobs.Find(id);
+            var data = _context.Jobs.
+                Include(ci => ci.City).
+                Include(co => co.Company).
+                Include(ed => ed.EducationLevel).FirstOrDefault(x=>x.Id==id);
             return data;
+        }
+
+        public List<SelectListItem> ListOfCompanies()
+        {
+            var clist = _context.Companies.Select(c => new SelectListItem()
+            {
+                Value = c.Id.ToString(),
+                Text = c.CompanyName,
+            }).ToList();
+            clist.Insert(0, new SelectListItem()
+            {
+                Text = "----Select Company----",
+                Value = string.Empty
+            });
+            return clist;
+
         }
 
         public void Update(long id, Job job)

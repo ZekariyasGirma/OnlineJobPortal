@@ -13,14 +13,17 @@ namespace OnlineJobPortal.Models
     {
         [Key]
         public long Id { get; set; }
-        
+
         [Required]
+        [ForeignKey("Job")]
         public long JobId { get; set; }
 
         [Required]
+        [ForeignKey("JobSeeker")]
         public long JobSeekerId { get; set; }
 
         [Required]
+        [ForeignKey("Company")]
         public long CompanyId { get; set; }
 
         public DateTime AppliedDate { get; set; } = DateTime.Now;

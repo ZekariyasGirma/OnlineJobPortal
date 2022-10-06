@@ -2,3 +2,78 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<h1 class="text-lg-center">Register New Company</h1>
+<div class="container bg-light w-75 shadow-lg ">
+   <br>
+<form action="/Company/Edit/@Model.Id" enctype="multipart/form-data" method="post">
+    <div class="form-group row text-center">
+        <div class="form-group col-md-12">
+            <label for="CompanyLogo"></label>
+          @if (Model.Photo!= null)
+            {
+                var bs64 = Convert.ToBase64String(Model.Photo);
+                var img = string.Format("data:image/jpg;base64,{0}",bs64);
+                <img class="border border-dark" src="@img" height="150"/>
+            }else{<img class="border border-dark" src="~/No-image-found.jpg" height="150px"/>}
+        </div>
+    </div>
+    <br/>
+    <div class="form-group row">
+        <div class="form-group col-md-6">
+            <label asp-for="CompanyName"></label>
+            <input asp-for="CompanyName" class="form-control "  placeholder="Company Name" value="@Model.CompanyName">
+            <span asp-validation-for="CompanyName" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="PhoneNumber"></label>
+            <input asp-for="PhoneNumber" class="form-control " placeholder="Phone Number" value="@Model.PhoneNumber">
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+    </div>
+      <br>
+    <div class="form-group row">
+        <div class="form-group col-md-6">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control "  placeholder="Email" value="@Model.Email">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="CityId"></label>
+            <select data-live-search="true" asp-for="CityId" class="form-control " asp-items="@ViewBag.CityList" value="@Model.CityId">
+            </select>
+        </div>
+    </div>
+      <br>
+    <div class="form-group row">
+        <div class="form-group col-md-4">
+            <label asp-for="Username"></label>
+            <input asp-for="Username" class="form-control "  placeholder="UserName">
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+           @* <label asp-for="Password"></label>*@
+            <input type="hidden" asp-for="Password" class="form-control " placeholder="password" value="@Model.Password">
+           @* <span asp-validation-for="Password" class="text-danger"></span>*@
+        </div>
+        <div class="form-group col-md-4">
+            @*<label asp-for="ConfirmPassword"></label>*@
+            <input type="hidden" asp-for="ConfirmPassword" class="form-control " placeholder="Confirm Password" value="@Model.Password">
+            @*<span asp-validation-for="ConfirmPassword" class="text-danger"></span>*@
+        </div>
+    </div>
+      <br>
+        <div class="form-group row">
+        <div class="form-group col-md-6">
+            <label for="Image">Profile Image</label>
+            <input type="file" name="Image" accept="image/*" id="Imageinput" class="form-control-file">
+        </div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn-lg  btn-dark btn-outline-light col-md-3">Update</button>
+    @*<a class="btn btn-dark btn-outline-danger col-md-3" href="/Job/index">Cancel</a>*@
+    </div>
+    
+</form>
+<br/>
+</div>

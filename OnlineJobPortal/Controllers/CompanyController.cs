@@ -14,7 +14,7 @@ namespace OnlineJobPortal.Controllers
     public class CompanyController : Controller
     {
         private readonly ICompanyService _service;
-        public bool ferr = false;
+     
         public CompanyController(ICompanyService service)
         {
             _service = service;
@@ -24,8 +24,10 @@ namespace OnlineJobPortal.Controllers
         {
             //var data = _service.GetAll();
             //return View(data);
-            ViewBag.Id = HttpContext.Session.GetString("Id");
-            ViewBag.Type = HttpContext.Session.GetString("Type");
+            ViewBag.Id = HttpContext.Request.Cookies["Id"];
+            ViewBag.Name = HttpContext.Request.Cookies["Name"];
+            ViewBag.Type = HttpContext.Request.Cookies["Type"];
+
             return View();
         }
         public IActionResult Details(long id)
@@ -51,32 +53,38 @@ namespace OnlineJobPortal.Controllers
             else 
             {
                 Company curUser = _service.GetByUserAndPass(username, password);
-                HttpContext.Session.SetString("Id", curUser.Id.ToString());
-                HttpContext.Session.SetString("Type", "Company");
-                
-                HttpContext.Session.SetString("Name", curUser.CompanyName);
+                CookieOptions options = new CookieOptions();
+                options.Expires = DateTime.Now.AddDays(30);
+                HttpContext.Response.Cookies.Append("Id", curUser.Id.ToString(),options);
+                HttpContext.Response.Cookies.Append("Type", "Company",options);
+                HttpContext.Response.Cookies.Append("Name", curUser.CompanyName, options);
                 ViewBag.Error = ""; 
                 return RedirectToAction("Index"); 
             }
         }
         public IActionResult LogOut()
         {
-            HttpContext.Session.Remove("Id");
-            HttpContext.Session.Remove("Type");
-            HttpContext.Session.Remove("Name");
-            HttpContext.Session.Clear();
-            return View();
+            HttpContext.Response.Cookies.Delete("Id");
+            HttpContext.Response.Cookies.Delete("Name");
+            HttpContext.Response.Cookies.Delete("Type");
+            return RedirectToAction("Index");
         } 
         public IActionResult Create()
         {
-            ViewBag.CityList = _service.ListOfCities();
-            return View();
+            if (String.IsNullOrEmpty(HttpContext.Request.Cookies["Type"]))
+            {
+                ViewBag.CityList = _service.ListOfCities();
+                return View();
+            }
+            else { return View("AccessDenied"); }
+                
         }
         [HttpPost]
         public IActionResult Create(Company company, IFormFile Image)
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.CityList = _service.ListOfCities();
                 return View(company);
             }
             if (Image != null)
@@ -99,6 +107,7 @@ namespace OnlineJobPortal.Controllers
 
         public IActionResult Edit(long id)
         {
+            ViewBag.CityList = _service.ListOfCities();
             var data = _service.GetById(id);
             if (data == null) return View("NotFound");
             return View(data);
@@ -108,6 +117,7 @@ namespace OnlineJobPortal.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.CityList = _service.ListOfCities();
                 return View(company);
             }
             if (Image != null)
@@ -124,6 +134,7 @@ namespace OnlineJobPortal.Controllers
                     company.Photo = p1;
                 }
             }
+
             _service.Update(id, company);
             return RedirectToAction(nameof(Index));
         }

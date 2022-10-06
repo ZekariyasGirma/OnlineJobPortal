@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,34 @@ namespace OnlineJobPortal.Models.Services
             _context = context;
         }
 
-        public void Add(Credential credential)
+        public void Add(Credential credential,long JSID)
         {
             _context.Credentials.Add(credential);
             _context.SaveChanges();
+            var Js = _context.JobSeekers.Find(JSID);
+            Js.CredentialId = credential.Id;
+            _context.JobSeekers.Update(Js);
+            _context.SaveChanges();
         }
+        public List<SelectListItem> ListOfEduLvl()
+        {
 
+            var clist = _context.EducationLevels.Select(c => new SelectListItem()
+            {
+                Value = c.Id.ToString(),
+                Text = c.EducationLevelName
+            }).ToList();
+            clist.Insert(0, new SelectListItem()
+            {
+                Text = "----Select Edu Lvl----",
+                Value = string.Empty
+            });
+            return clist;
+
+        }
         public void Delete(long id)
         {
-            var data = _context.Credentials.Find(id);
+            var data = GetById(id);
             _context.Credentials.Remove(data);
             _context.SaveChanges();
         }
@@ -30,7 +50,6 @@ namespace OnlineJobPortal.Models.Services
         public List<Credential> GetAll()
         {
             var result = _context.Credentials.
-                Include(js => js.JobSeeker).
                 Include(el=>el.EducationLevel).
                 ToList();
             return result;
@@ -38,7 +57,8 @@ namespace OnlineJobPortal.Models.Services
 
         public Credential GetById(long id)
         {
-            var data = _context.Credentials.Find(id);
+            var data = _context.Credentials.
+                Include(el => el.EducationLevel).FirstOrDefault(x=>x.Id==id);
             return data;
         }
 

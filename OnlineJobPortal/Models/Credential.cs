@@ -24,18 +24,15 @@ namespace OnlineJobPortal.Models
         [Range(0, Int32.MaxValue, ErrorMessage = "Value should be greater than or equal to 0")]
         public int Experience { get; set; }
 
-        [Required]
         public byte[] CvPdf { get; set; }
 
         [Display(Name ="Extra Skills")]
         public string Skills { get; set; }
-        
+       
         [Required]
-        public long JobSeekerId { get; set; }
-        [Required]
+        [ForeignKey("EducationLevel")]
         [Display(Name = "Education Level")]
         public long EducationLevelId { get; set; }
-        public virtual JobSeeker JobSeeker { get; set; }
         public virtual EducationLevel EducationLevel { get; set; }
 
 

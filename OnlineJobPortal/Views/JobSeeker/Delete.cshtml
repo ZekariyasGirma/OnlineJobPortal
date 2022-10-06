@@ -1,17 +1,17 @@
-﻿@model Company
+﻿@model JobSeeker
 @{
     ViewData["Title"] = "Delete";
 }
-<h2>Remove Company</h2>
-<form action="/Company/delete/@Model.Id" method="post">
+<h2>Remove JobSeeker</h2>
+<form action="/JobSeeker/delete/@Model.Id" method="post">
     <table class="table">
         <tr class="bg-light">
             <td class="">
-                <label for="CompanyName">Compnay Name</label>
+                <label for="JobSeekerName">JobSeeker Name</label>
             </td>
             <td>
                 <input type="hidden" name="Id" value="@Model.Id" />
-                @Model.CompanyName
+                <p>@Model.FirstName @Model.LastName</p> 
             </td>
         </tr>
     </table>

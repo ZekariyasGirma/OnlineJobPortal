@@ -20,24 +20,41 @@ namespace OnlineJobPortal.Controllers
 
         public IActionResult Index()
         {
+            if (String.IsNullOrEmpty(HttpContext.Request.Cookies["Type"]) ||
+                HttpContext.Request.Cookies["Type"] == "JobSeeker")
+            {
+                return View("AccessDenied");
+            }
             var data = _service.GetAll();
             return View(data);
         }
         public IActionResult Details(long id)
         {
-            var data = _service.GetById(id);
+            if (String.IsNullOrEmpty(HttpContext.Request.Cookies["Type"])||
+                (HttpContext.Request.Cookies["Type"]=="JobSeeker"&& HttpContext.Request.Cookies["Id"]!=id.ToString()))
+            {
+                return View("AccessDenied");
+            }
+                var data = _service.GetById(id);
             if(data== null) { return View("NotFound"); }
             return View(data);
         }
         public IActionResult Create()
         {
-            return View();
+            if (String.IsNullOrEmpty(HttpContext.Request.Cookies["Type"]))
+            {
+                ViewBag.CityList = _service.ListOfCities();
+                return View();
+            }
+            else { return View("AccessDenied"); }
         }
         [HttpPost]
         public IActionResult Create(JobSeeker jobSeeker, IFormFile Image)
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.CityList = _service.ListOfCities();
+
                 return View(jobSeeker);
             }
             if (Image != null)
@@ -54,12 +71,47 @@ namespace OnlineJobPortal.Controllers
                     jobSeeker.Photo = p1;
                 }
             }
+           
             _service.Add(jobSeeker);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Create","Credential",new { id = jobSeeker.Id });//use viewbag give default value then access again in modelstate valid
         }
+        public IActionResult Login()
+        {
 
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Login(string username, string password)
+        {
+            if (String.IsNullOrWhiteSpace(username) || String.IsNullOrWhiteSpace(password)
+                || !_service.AccountExists(username, password))
+            {
+                ViewBag.Error = "Username or Password inccorect";
+                return View();
+            }
+            else
+            {
+                JobSeeker curUser = _service.GetByUserAndPass(username, password);
+                CookieOptions options = new CookieOptions();
+                options.Expires = DateTime.Now.AddDays(30);
+                HttpContext.Response.Cookies.Append("Id", curUser.Id.ToString(), options);
+                HttpContext.Response.Cookies.Append("Type", "JobSeeker", options);
+                HttpContext.Response.Cookies.Append("Name", curUser.FirstName+""+curUser.LastName, options);
+                ViewBag.Error = "";
+                return RedirectToAction("Index");
+            }
+        }
+        public IActionResult LogOut()
+        {
+            HttpContext.Response.Cookies.Delete("Id");
+            HttpContext.Response.Cookies.Delete("Name");
+            HttpContext.Response.Cookies.Delete("Type");
+            return RedirectToAction("Index");
+        }
         public IActionResult Edit(long id)
         {
+            ViewBag.CityList = _service.ListOfCities();
+
             var data = _service.GetById(id);
             if (data == null) return View("NotFound");
             return View(data);
@@ -69,6 +121,8 @@ namespace OnlineJobPortal.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.CityList = _service.ListOfCities();
+
                 return View(jobSeeker);
             }
             if (Image != null)
