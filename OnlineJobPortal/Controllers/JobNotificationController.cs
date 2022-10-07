@@ -50,7 +50,7 @@ namespace OnlineJobPortal.Controllers
             jobNotification.C_ReadStatus = "NotSet";
             
             _service.Add(jobNotification);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index","JobSeeker");
         }
         public IActionResult Accept(long id)
         {

@@ -18,26 +18,33 @@ namespace OnlineJobPortal.Controllers
         }
         public IActionResult Index()
         {
+            if (HttpContext.Request.Cookies["Type"] != "Admin")
+            { return View("AccessDenied"); }
             return View();
         }
         public IActionResult Companies()
         {
+            if (HttpContext.Request.Cookies["Type"] != "Admin")
+            { return View("AccessDenied"); }
             var data = _service.GetAllCompany();
             return View(data);
         }
         public IActionResult JobSeekers()
         {
+            if (HttpContext.Request.Cookies["Type"] != "Admin")
+            { return View("AccessDenied"); }
             var data = _service.GetAllJobSeeker();
             return View(data);
         }
         public IActionResult Login()
         {
-
+          
             return View();
         }
         [HttpPost]
         public IActionResult Login(string username, string password)
         {
+            
             if (String.IsNullOrWhiteSpace(username) || String.IsNullOrWhiteSpace(password)
                 || !_service.AccountExists(username, password))
             {
@@ -58,10 +65,12 @@ namespace OnlineJobPortal.Controllers
         }
         public IActionResult LogOut()
         {
+            if (HttpContext.Request.Cookies["Type"] != "Admin")
+            { return View("AccessDenied"); }
             HttpContext.Response.Cookies.Delete("Id");
             HttpContext.Response.Cookies.Delete("Name");
             HttpContext.Response.Cookies.Delete("Type");
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
     }
 }

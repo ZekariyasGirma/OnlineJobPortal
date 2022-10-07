@@ -16,16 +16,22 @@ namespace OnlineJobPortal.Controllers
         }
         public IActionResult Index()
         {
+            if (HttpContext.Request.Cookies["Type"] != "Admin")
+            { return View("AccessDenied"); }
             var data = _service.GetAll();
             return View(data);
         }
         public IActionResult Create()
         {
+            if (HttpContext.Request.Cookies["Type"] != "Admin")
+            { return View("AccessDenied"); }
             return View();
         }
         [HttpPost]
         public IActionResult Create(EducationLevel educationLevel)
         {
+            if (HttpContext.Request.Cookies["Type"] != "Admin")
+            { return View("AccessDenied"); }
             if (!ModelState.IsValid)
             {
                 return View(educationLevel);
@@ -36,6 +42,8 @@ namespace OnlineJobPortal.Controllers
 
         public IActionResult Edit(long id)
         {
+            if (HttpContext.Request.Cookies["Type"] != "Admin")
+            { return View("AccessDenied"); }
             var data = _service.GetById(id);
             if (data == null) return View("NotFound");
             return View(data);
@@ -43,6 +51,8 @@ namespace OnlineJobPortal.Controllers
         [HttpPost]
         public IActionResult Edit(long id, EducationLevel educationLevel)
         {
+            if (HttpContext.Request.Cookies["Type"] != "Admin")
+            { return View("AccessDenied"); }
             if (!ModelState.IsValid)
             {
                 return View(educationLevel);
@@ -52,6 +62,8 @@ namespace OnlineJobPortal.Controllers
         }
         public IActionResult Delete(long id)
         {
+            if (HttpContext.Request.Cookies["Type"] != "Admin")
+            { return View("AccessDenied"); }
             var data = _service.GetById(id);
             if (data == null) return View("NotFound");
             return View(data);
@@ -60,6 +72,8 @@ namespace OnlineJobPortal.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirm(long id)
         {
+            if (HttpContext.Request.Cookies["Type"] != "Admin")
+            { return View("AccessDenied"); }
             var data = _service.GetById(id);
             if (data == null) return View("NotFound");
             _service.Delete(id);

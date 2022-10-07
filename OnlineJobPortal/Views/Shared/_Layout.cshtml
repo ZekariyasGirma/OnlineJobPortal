@@ -19,7 +19,7 @@
 <body>
         <nav class="navbar sticky-top navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" >
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Online Job Site <i class="bi-globe"></i></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> Job Site <i class="bi-globe"></i></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -43,7 +43,7 @@
                                 </li>
                       }else if(HttpContextAccessor.HttpContext.Request.Cookies["Type"]=="Company"){
                                   <li class="nav-item ml-auto">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="Details"><i class="bi-person-circle"></i>@HttpContextAccessor.HttpContext.Request.Cookies["Name"]</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Company" asp-route-id="@HttpContextAccessor.HttpContext.Request.Cookies["id"]" asp-action="Details"><i class="bi-person-circle"></i>@HttpContextAccessor.HttpContext.Request.Cookies["Name"]</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="Logout"><i class="bi-box-arrow-left"></i> Company Logout</a>

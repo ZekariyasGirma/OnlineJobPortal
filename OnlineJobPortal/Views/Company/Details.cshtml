@@ -39,4 +39,7 @@
     
 </table>
 
-<a href="/Admin/index" class="btn btn-info">Back to home Page</a>
+
+@if (HttpContextAccessor.HttpContext.Request.Cookies["Type"] == "Company"){
+    <a href="/Company/edit/@Model.Id" class="btn btn-dark btn-outline-light">Edit Profile</a>
+}else{<a href="/Admin/index" class="btn btn-info">Back to home Page</a>}

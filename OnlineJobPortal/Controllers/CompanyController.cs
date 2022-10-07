@@ -88,7 +88,7 @@ namespace OnlineJobPortal.Controllers
             HttpContext.Response.Cookies.Delete("Id");
             HttpContext.Response.Cookies.Delete("Name");
             HttpContext.Response.Cookies.Delete("Type");
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         } 
         public IActionResult Create()
         {
